@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
-import { ThemeService } from './services/theme.service';
 import { BreadcrumbComponent } from './shared/components/breadcrumb/breadcrumb.component';
 
 @Component({
