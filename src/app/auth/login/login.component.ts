@@ -14,10 +14,8 @@ import { SpinnerComponent } from '../../shared/components/spinner/spinner.compon
     ReactiveFormsModule,
     NgClass,
     NgIf,
-    RouterLink,
     FormFieldComponent,
-    ButtonComponent,
-    SpinnerComponent
+    ButtonComponent
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']

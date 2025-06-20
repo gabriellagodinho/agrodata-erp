@@ -1,0 +1,107 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+    <!-- Logo and Title -->
+    <div class="text-center">
+      <div class="flex justify-center">
+        <span class="text-4xl text-primary-600 dark:text-primary-400">🌱</span>
+      </div>
+      <h2 class="mt-4 text-3xl font-extrabold text-gray-900 dark:text-white">AgroData ERP</h2>
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Entre com suas credenciais para acessar o sistema</p>
+    </div>
+
+    <!-- Error Alert -->
+    <div *ngIf="error" class="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg relative" role="alert">
+      <span class="block sm:inline">{{ error }}</span>
+      <button type="button" class="absolute top-0 right-0 p-2" (click)="error = ''">
+        <svg class="h-4 w-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
+      <!-- Email Field -->
+      <app-form-field label="Email" [required]="true" [errorMessages]="{'required': 'Email é obrigatório', 'email': 'Email inválido'}">
+        <input
+          type="email"
+          formControlName="email"
+          id="email"
+          autocomplete="email"
+          [ngClass]="{'border-red-500': submitted && f['email'].errors}"
+          class="w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          placeholder="seu@email.com"
+        >
+      </app-form-field>
+
+      <!-- Password Field -->
+      <app-form-field label="Senha" [required]="true" [errorMessages]="{'required': 'Senha é obrigatória'}">
+        <input
+          type="password"
+          formControlName="password"
+          id="password"
+          autocomplete="current-password"
+          [ngClass]="{'border-red-500': submitted && f['password'].errors}"
+          class="w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          placeholder="••••••••"
+        >
+      </app-form-field>
+
+      <!-- Remember Me Checkbox -->
+      <div class="flex items-center">
+        <input
+          id="rememberMe"
+          name="rememberMe"
+          type="checkbox"
+          formControlName="rememberMe"
+          class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+        >
+        <label for="rememberMe" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+          Lembrar-me
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <app-button
+          [fullWidth]="true"
+          [loading]="loading"
+          [disabled]="loading"
+          type="submit"
+        >
+          <span *ngIf="!loading">Entrar</span>
+          <span *ngIf="loading">Carregando...</span>
+        </app-button>
+      </div>
+
+      <!-- Demo Credentials -->
+      <div class="text-center mt-4">
+        <p class="text-xs text-gray-500 dark:text-gray-400">Credenciais de demonstração:</p>
+        <div class="grid grid-cols-3 gap-2 mt-2 text-xs">
+          <div class="bg-gray-50 dark:bg-gray-700 p-2 rounded">
+            <p class="font-semibold text-gray-700 dark:text-gray-300">Admin</p>
+            <p class="text-gray-500 dark:text-gray-400">admin[at]agrodata.com</p>
+            <p class="text-gray-500 dark:text-gray-400">senha</p>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700 p-2 rounded">
+            <p class="font-semibold text-gray-700 dark:text-gray-300">Operador</p>
+            <p class="text-gray-500 dark:text-gray-400">operador[at]agrodata.com</p>
+            <p class="text-gray-500 dark:text-gray-400">senha</p>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-700 p-2 rounded">
+            <p class="font-semibold text-gray-700 dark:text-gray-300">Consultor</p>
+            <p class="text-gray-500 dark:text-gray-400">consultor[at]agrodata.com</p>
+            <p class="text-gray-500 dark:text-gray-400">senha</p>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Footer -->
+    <div class="mt-6 text-center">
+      <p class="text-xs text-gray-500 dark:text-gray-400">
+        &copy; 2025 AgroData ERP. Todos os direitos reservados.
+      </p>
+    </div>
+  </div>
+</div>
