@@ -1,0 +1,194 @@
+<h2>Finanças</h2>
+
+<div class="finance-actions">
+  <div class="period-selector">
+    <button class="period-btn active">Mês Atual</button>
+    <button class="period-btn">Trimestre</button>
+    <button class="period-btn">Ano</button>
+    <button class="period-btn">Personalizado</button>
+  </div>
+  <div class="export-options">
+    <button class="export-btn">Exportar Relatório</button>
+  </div>
+</div>
+
+<div class="finance-overview">
+  <div class="overview-card revenue">
+    <div class="card-icon">💰</div>
+    <div class="card-info">
+      <h3>Receitas</h3>
+      <div class="amount">R$ 450.000,00</div>
+      <div class="trend positive">+12% em relação ao mês anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card expenses">
+    <div class="card-icon">📉</div>
+    <div class="card-info">
+      <h3>Despesas</h3>
+      <div class="amount">R$ 320.000,00</div>
+      <div class="trend negative">+5% em relação ao mês anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card profit">
+    <div class="card-icon">📈</div>
+    <div class="card-info">
+      <h3>Lucro</h3>
+      <div class="amount">R$ 130.000,00</div>
+      <div class="trend positive">+35% em relação ao mês anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card pending">
+    <div class="card-icon">⏳</div>
+    <div class="card-info">
+      <h3>A Receber</h3>
+      <div class="amount">R$ 85.000,00</div>
+      <div class="trend neutral">3 faturas pendentes</div>
+    </div>
+  </div>
+</div>
+
+<div class="finance-charts">
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>Fluxo de Caixa</h3>
+      <div class="chart-actions">
+        <select>
+          <option>Últimos 6 meses</option>
+          <option>Último ano</option>
+          <option>Personalizado</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-placeholder">
+      <!-- Aqui seria implementado um gráfico de linha com uma biblioteca como Chart.js -->
+      <div class="chart-message">Gráfico de Fluxo de Caixa</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>Despesas por Categoria</h3>
+      <div class="chart-actions">
+        <select>
+          <option>Mês atual</option>
+          <option>Último trimestre</option>
+          <option>Último ano</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-placeholder">
+      <!-- Aqui seria implementado um gráfico de pizza com uma biblioteca como Chart.js -->
+      <div class="chart-message">Gráfico de Despesas por Categoria</div>
+    </div>
+  </div>
+</div>
+
+<div class="finance-tables">
+  <div class="table-container">
+    <div class="table-header">
+      <h3>Últimas Transações</h3>
+      <button class="view-all-btn">Ver Todas</button>
+    </div>
+    <table class="finance-table">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Valor</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15/06/2025</td>
+          <td>Venda de Soja - Lote 3</td>
+          <td>Vendas</td>
+          <td class="amount positive">R$ 120.000,00</td>
+          <td><span class="status completed">Concluído</span></td>
+        </tr>
+        <tr>
+          <td>12/06/2025</td>
+          <td>Compra de Fertilizantes</td>
+          <td>Insumos</td>
+          <td class="amount negative">R$ 45.000,00</td>
+          <td><span class="status completed">Concluído</span></td>
+        </tr>
+        <tr>
+          <td>10/06/2025</td>
+          <td>Manutenção de Maquinário</td>
+          <td>Manutenção</td>
+          <td class="amount negative">R$ 12.500,00</td>
+          <td><span class="status completed">Concluído</span></td>
+        </tr>
+        <tr>
+          <td>05/06/2025</td>
+          <td>Pagamento de Funcionários</td>
+          <td>Folha de Pagamento</td>
+          <td class="amount negative">R$ 85.000,00</td>
+          <td><span class="status completed">Concluído</span></td>
+        </tr>
+        <tr>
+          <td>01/06/2025</td>
+          <td>Venda de Milho - Lote 2</td>
+          <td>Vendas</td>
+          <td class="amount positive">R$ 95.000,00</td>
+          <td><span class="status completed">Concluído</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-container">
+    <div class="table-header">
+      <h3>Contas a Pagar</h3>
+      <button class="view-all-btn">Ver Todas</button>
+    </div>
+    <table class="finance-table">
+      <thead>
+        <tr>
+          <th>Vencimento</th>
+          <th>Descrição</th>
+          <th>Fornecedor</th>
+          <th>Valor</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>25/06/2025</td>
+          <td>Compra de Defensivos</td>
+          <td>AgroDefesa Ltda.</td>
+          <td class="amount negative">R$ 35.000,00</td>
+          <td>
+            <button class="small-btn">Pagar</button>
+            <button class="small-btn">Detalhes</button>
+          </td>
+        </tr>
+        <tr>
+          <td>28/06/2025</td>
+          <td>Serviço de Consultoria</td>
+          <td>AgroConsult S.A.</td>
+          <td class="amount negative">R$ 8.500,00</td>
+          <td>
+            <button class="small-btn">Pagar</button>
+            <button class="small-btn">Detalhes</button>
+          </td>
+        </tr>
+        <tr>
+          <td>30/06/2025</td>
+          <td>Aluguel de Equipamentos</td>
+          <td>MaquiRent</td>
+          <td class="amount negative">R$ 12.000,00</td>
+          <td>
+            <button class="small-btn">Pagar</button>
+            <button class="small-btn">Detalhes</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

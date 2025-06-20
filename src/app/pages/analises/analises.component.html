@@ -1,0 +1,244 @@
+<h2>Análises</h2>
+
+<div class="analysis-actions">
+  <div class="filter-options">
+    <select>
+      <option value="">Todos os tipos</option>
+      <option value="producao">Produção</option>
+      <option value="financeiro">Financeiro</option>
+      <option value="clima">Clima</option>
+      <option value="solo">Solo</option>
+    </select>
+    <select>
+      <option value="">Todos os períodos</option>
+      <option value="mes-atual">Mês Atual</option>
+      <option value="trimestre">Trimestre</option>
+      <option value="ano">Ano</option>
+      <option value="personalizado">Personalizado</option>
+    </select>
+  </div>
+  <div class="export-options">
+    <button class="export-btn">Exportar Relatório</button>
+  </div>
+</div>
+
+<div class="analysis-overview">
+  <div class="overview-card">
+    <div class="card-icon">📊</div>
+    <div class="card-info">
+      <h3>Índice de Produtividade</h3>
+      <div class="value">85/100</div>
+      <div class="trend positive">+5 pontos em relação ao período anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <div class="card-icon">💰</div>
+    <div class="card-info">
+      <h3>Rentabilidade</h3>
+      <div class="value">28%</div>
+      <div class="trend positive">+3% em relação ao período anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <div class="card-icon">🌡️</div>
+    <div class="card-info">
+      <h3>Impacto Climático</h3>
+      <div class="value">Médio</div>
+      <div class="trend neutral">Sem alteração em relação ao período anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <div class="card-icon">🌱</div>
+    <div class="card-info">
+      <h3>Saúde do Solo</h3>
+      <div class="value">Boa</div>
+      <div class="trend positive">Melhoria em relação ao período anterior</div>
+    </div>
+  </div>
+</div>
+
+<div class="analysis-charts">
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>Análise Comparativa de Produtividade</h3>
+      <div class="chart-actions">
+        <select>
+          <option>Por Cultivo</option>
+          <option>Por Área</option>
+          <option>Por Período</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-placeholder">
+      <!-- Aqui seria implementado um gráfico de barras com uma biblioteca como Chart.js -->
+      <div class="chart-message">Gráfico Comparativo de Produtividade</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>Análise de Custos x Receitas</h3>
+      <div class="chart-actions">
+        <select>
+          <option>Últimos 6 meses</option>
+          <option>Último ano</option>
+          <option>Personalizado</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-placeholder">
+      <!-- Aqui seria implementado um gráfico de linha com uma biblioteca como Chart.js -->
+      <div class="chart-message">Gráfico de Custos x Receitas</div>
+    </div>
+  </div>
+</div>
+
+<div class="analysis-details">
+  <div class="section-header">
+    <h3>Análises Detalhadas</h3>
+    <div class="section-actions">
+      <button class="view-all-btn">Ver Todas</button>
+    </div>
+  </div>
+
+  <div class="analysis-grid">
+    <div class="analysis-card">
+      <div class="analysis-header">
+        <h4>Análise de Solo - Fazenda Norte</h4>
+        <div class="analysis-date">Atualizado: 10/06/2025</div>
+      </div>
+      <div class="analysis-content">
+        <div class="analysis-summary">
+          <p>Análise de composição do solo e nutrientes nas áreas de cultivo de soja da Fazenda Norte.</p>
+        </div>
+        <div class="analysis-metrics">
+          <div class="metric-item">
+            <div class="metric-label">pH:</div>
+            <div class="metric-value">6.5</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Nitrogênio:</div>
+            <div class="metric-value">Médio</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Fósforo:</div>
+            <div class="metric-value">Alto</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Potássio:</div>
+            <div class="metric-value">Médio</div>
+          </div>
+        </div>
+        <div class="analysis-actions-row">
+          <button class="action-btn">Ver Detalhes</button>
+          <button class="action-btn">Histórico</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <div class="analysis-header">
+        <h4>Análise Climática - Trimestre</h4>
+        <div class="analysis-date">Atualizado: 15/06/2025</div>
+      </div>
+      <div class="analysis-content">
+        <div class="analysis-summary">
+          <p>Análise do impacto das condições climáticas na produtividade das culturas no último trimestre.</p>
+        </div>
+        <div class="analysis-metrics">
+          <div class="metric-item">
+            <div class="metric-label">Precipitação:</div>
+            <div class="metric-value">850mm</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Temperatura Média:</div>
+            <div class="metric-value">24°C</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Umidade:</div>
+            <div class="metric-value">65%</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Impacto:</div>
+            <div class="metric-value">Positivo</div>
+          </div>
+        </div>
+        <div class="analysis-actions-row">
+          <button class="action-btn">Ver Detalhes</button>
+          <button class="action-btn">Histórico</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <div class="analysis-header">
+        <h4>Análise de Rentabilidade - Milho</h4>
+        <div class="analysis-date">Atualizado: 05/06/2025</div>
+      </div>
+      <div class="analysis-content">
+        <div class="analysis-summary">
+          <p>Análise detalhada da rentabilidade do cultivo de milho na última safra.</p>
+        </div>
+        <div class="analysis-metrics">
+          <div class="metric-item">
+            <div class="metric-label">Custo/ha:</div>
+            <div class="metric-value">R$ 5,200</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Receita/ha:</div>
+            <div class="metric-value">R$ 7,800</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Lucro/ha:</div>
+            <div class="metric-value">R$ 2,600</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">ROI:</div>
+            <div class="metric-value">50%</div>
+          </div>
+        </div>
+        <div class="analysis-actions-row">
+          <button class="action-btn">Ver Detalhes</button>
+          <button class="action-btn">Histórico</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <div class="analysis-header">
+        <h4>Análise de Pragas - Algodão</h4>
+        <div class="analysis-date">Atualizado: 12/06/2025</div>
+      </div>
+      <div class="analysis-content">
+        <div class="analysis-summary">
+          <p>Análise da incidência de pragas nas plantações de algodão e eficácia das medidas de controle.</p>
+        </div>
+        <div class="analysis-metrics">
+          <div class="metric-item">
+            <div class="metric-label">Incidência:</div>
+            <div class="metric-value">Baixa</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Tipo Principal:</div>
+            <div class="metric-value">Bicudo</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Área Afetada:</div>
+            <div class="metric-value">15%</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Controle:</div>
+            <div class="metric-value">Eficaz</div>
+          </div>
+        </div>
+        <div class="analysis-actions-row">
+          <button class="action-btn">Ver Detalhes</button>
+          <button class="action-btn">Histórico</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

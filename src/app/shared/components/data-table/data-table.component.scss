@@ -1,0 +1,111 @@
+/* Additional styles for data-table component */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Container styles */
+.data-table-container {
+  width: 100%;
+}
+
+/* Animation for hover effects */
+tr.hover\:bg-gray-50:hover,
+tr.hover\:bg-gray-600:hover {
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Improve table responsiveness */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar for tables */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Dark mode scrollbar */
+:host-context(.dark) .overflow-x-auto::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+:host-context(.dark) .overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #4a5568;
+}
+
+:host-context(.dark) .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Improve accessibility */
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid rgba(22, 163, 74, 0.5);
+  outline-offset: 2px;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Status badge styles */
+.rounded-full {
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* Fix for Safari */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    .table-container {
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+/* Improve table cell padding consistency */
+td, th {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Ensure consistent height for status badges */
+.inline-flex.text-xs {
+  min-height: 1.5rem;
+}

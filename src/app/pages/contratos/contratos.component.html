@@ -1,0 +1,204 @@
+<h2>Contratos</h2>
+
+<div class="contract-actions">
+  <div class="search-box">
+    <input type="text" placeholder="Buscar contrato...">
+    <button class="search-btn">🔍</button>
+  </div>
+  <div class="filter-options">
+    <select>
+      <option value="">Todos os tipos</option>
+      <option value="fornecimento">Fornecimento</option>
+      <option value="venda">Venda</option>
+      <option value="arrendamento">Arrendamento</option>
+      <option value="servico">Serviço</option>
+    </select>
+    <select>
+      <option value="">Todos os status</option>
+      <option value="ativo">Ativo</option>
+      <option value="pendente">Pendente</option>
+      <option value="finalizado">Finalizado</option>
+      <option value="cancelado">Cancelado</option>
+    </select>
+  </div>
+  <button class="add-contract-btn">+ Novo Contrato</button>
+</div>
+
+<div class="contract-stats">
+  <div class="stat-card">
+    <div class="stat-value">28</div>
+    <div class="stat-label">Total de Contratos</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">18</div>
+    <div class="stat-label">Ativos</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Pendentes</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">R$ 1.2M</div>
+    <div class="stat-label">Valor Total</div>
+  </div>
+</div>
+
+<div class="contracts-grid">
+  <div class="contract-card">
+    <div class="contract-header">
+      <div class="contract-title">
+        <h3>Fornecimento de Soja</h3>
+        <span class="contract-id">#CONT-001</span>
+      </div>
+      <div class="contract-status active">Ativo</div>
+    </div>
+    <div class="contract-details">
+      <div class="detail-row">
+        <div class="detail-label">Parceiro:</div>
+        <div class="detail-value">Cooperativa Agrícola Central</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Tipo:</div>
+        <div class="detail-value">Fornecimento</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Início:</div>
+        <div class="detail-value">01/03/2025</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Término:</div>
+        <div class="detail-value">01/09/2025</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Valor:</div>
+        <div class="detail-value">R$ 450.000,00</div>
+      </div>
+    </div>
+    <div class="contract-actions-row">
+      <button class="action-btn">Ver Detalhes</button>
+      <button class="action-btn">Editar</button>
+      <button class="action-btn">Documentos</button>
+    </div>
+  </div>
+
+  <div class="contract-card">
+    <div class="contract-header">
+      <div class="contract-title">
+        <h3>Arrendamento Fazenda Sul</h3>
+        <span class="contract-id">#CONT-002</span>
+      </div>
+      <div class="contract-status active">Ativo</div>
+    </div>
+    <div class="contract-details">
+      <div class="detail-row">
+        <div class="detail-label">Parceiro:</div>
+        <div class="detail-value">Propriedades Rurais Silva</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Tipo:</div>
+        <div class="detail-value">Arrendamento</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Início:</div>
+        <div class="detail-value">15/01/2025</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Término:</div>
+        <div class="detail-value">15/01/2030</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Valor:</div>
+        <div class="detail-value">R$ 250.000,00/ano</div>
+      </div>
+    </div>
+    <div class="contract-actions-row">
+      <button class="action-btn">Ver Detalhes</button>
+      <button class="action-btn">Editar</button>
+      <button class="action-btn">Documentos</button>
+    </div>
+  </div>
+
+  <div class="contract-card">
+    <div class="contract-header">
+      <div class="contract-title">
+        <h3>Venda de Milho</h3>
+        <span class="contract-id">#CONT-003</span>
+      </div>
+      <div class="contract-status pending">Pendente</div>
+    </div>
+    <div class="contract-details">
+      <div class="detail-row">
+        <div class="detail-label">Parceiro:</div>
+        <div class="detail-value">Indústria de Rações Nutri</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Tipo:</div>
+        <div class="detail-value">Venda</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Início:</div>
+        <div class="detail-value">Pendente assinatura</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Término:</div>
+        <div class="detail-value">Pendente assinatura</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Valor:</div>
+        <div class="detail-value">R$ 180.000,00</div>
+      </div>
+    </div>
+    <div class="contract-actions-row">
+      <button class="action-btn">Ver Detalhes</button>
+      <button class="action-btn">Editar</button>
+      <button class="action-btn">Documentos</button>
+    </div>
+  </div>
+
+  <div class="contract-card">
+    <div class="contract-header">
+      <div class="contract-title">
+        <h3>Serviço de Colheita</h3>
+        <span class="contract-id">#CONT-004</span>
+      </div>
+      <div class="contract-status completed">Finalizado</div>
+    </div>
+    <div class="contract-details">
+      <div class="detail-row">
+        <div class="detail-label">Parceiro:</div>
+        <div class="detail-value">Serviços Agrícolas Rápidos</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Tipo:</div>
+        <div class="detail-value">Serviço</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Início:</div>
+        <div class="detail-value">10/02/2025</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Término:</div>
+        <div class="detail-value">25/02/2025</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Valor:</div>
+        <div class="detail-value">R$ 75.000,00</div>
+      </div>
+    </div>
+    <div class="contract-actions-row">
+      <button class="action-btn">Ver Detalhes</button>
+      <button class="action-btn">Editar</button>
+      <button class="action-btn">Documentos</button>
+    </div>
+  </div>
+</div>
+
+<div class="pagination">
+  <button class="page-btn">Anterior</button>
+  <div class="page-numbers">
+    <button class="page-number active">1</button>
+    <button class="page-number">2</button>
+    <button class="page-number">3</button>
+  </div>
+  <button class="page-btn">Próximo</button>
+</div>

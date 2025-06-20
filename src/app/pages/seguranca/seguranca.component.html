@@ -1,0 +1,269 @@
+<h2>Segurança</h2>
+
+<div class="security-container">
+  <div class="security-sidebar">
+    <div class="security-nav">
+      <div class="nav-item active">
+        <i>🔑</i>
+        <span>Autenticação</span>
+      </div>
+      <div class="nav-item">
+        <i>👥</i>
+        <span>Usuários</span>
+      </div>
+      <div class="nav-item">
+        <i>👮</i>
+        <span>Permissões</span>
+      </div>
+      <div class="nav-item">
+        <i>🔒</i>
+        <span>Senhas</span>
+      </div>
+      <div class="nav-item">
+        <i>📱</i>
+        <span>Dispositivos</span>
+      </div>
+      <div class="nav-item">
+        <i>📊</i>
+        <span>Logs de Acesso</span>
+      </div>
+      <div class="nav-item">
+        <i>🛡️</i>
+        <span>Backup</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="security-content">
+    <div class="security-section">
+      <div class="section-header">
+        <h3>Configurações de Autenticação</h3>
+        <button class="save-btn">Salvar Alterações</button>
+      </div>
+
+      <div class="form-container">
+        <div class="form-group checkbox-group">
+          <label class="checkbox-container">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            Ativar autenticação de dois fatores (2FA)
+          </label>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-container">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            Exigir senha forte para todos os usuários
+          </label>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-container">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            Bloquear conta após 5 tentativas de login malsucedidas
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="session-timeout">Tempo limite da sessão (minutos)</label>
+          <input type="number" id="session-timeout" value="30" min="5" max="120">
+        </div>
+
+        <div class="form-group">
+          <label for="password-expiry">Expiração de senha (dias)</label>
+          <input type="number" id="password-expiry" value="90" min="30" max="180">
+        </div>
+      </div>
+    </div>
+
+    <div class="security-section">
+      <div class="section-header">
+        <h3>Usuários Ativos</h3>
+        <button class="add-btn">+ Adicionar Usuário</button>
+      </div>
+
+      <div class="users-table-container">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Função</th>
+              <th>Status</th>
+              <th>Último Acesso</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="user-name">
+                  <div class="user-avatar">JD</div>
+                  <div>João da Silva</div>
+                </div>
+              </td>
+              <td>joao.silva&#64;agrodatafazendas.com.br</td>
+              <td>Administrador</td>
+              <td><span class="status-active">Ativo</span></td>
+              <td>Hoje, 09:45</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn">Editar</button>
+                  <button class="action-btn">Bloquear</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-name">
+                  <div class="user-avatar">MS</div>
+                  <div>Maria Santos</div>
+                </div>
+              </td>
+              <td>maria.santos&#64;agrodatafazendas.com.br</td>
+              <td>Gerente</td>
+              <td><span class="status-active">Ativo</span></td>
+              <td>Ontem, 16:30</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn">Editar</button>
+                  <button class="action-btn">Bloquear</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-name">
+                  <div class="user-avatar">PO</div>
+                  <div>Pedro Oliveira</div>
+                </div>
+              </td>
+              <td>pedro.oliveira&#64;agrodatafazendas.com.br</td>
+              <td>Técnico</td>
+              <td><span class="status-inactive">Bloqueado</span></td>
+              <td>15/06/2025</td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn">Editar</button>
+                  <button class="action-btn">Desbloquear</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="security-section">
+      <div class="section-header">
+        <h3>Logs de Acesso Recentes</h3>
+        <button class="view-all-btn">Ver Todos</button>
+      </div>
+
+      <div class="logs-table-container">
+        <table class="logs-table">
+          <thead>
+            <tr>
+              <th>Usuário</th>
+              <th>Data/Hora</th>
+              <th>IP</th>
+              <th>Dispositivo</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João da Silva</td>
+              <td>19/06/2025 09:45</td>
+              <td>192.168.1.100</td>
+              <td>Windows / Chrome</td>
+              <td><span class="status-success">Sucesso</span></td>
+            </tr>
+            <tr>
+              <td>Maria Santos</td>
+              <td>18/06/2025 16:30</td>
+              <td>192.168.1.105</td>
+              <td>MacOS / Safari</td>
+              <td><span class="status-success">Sucesso</span></td>
+            </tr>
+            <tr>
+              <td>Pedro Oliveira</td>
+              <td>15/06/2025 14:22</td>
+              <td>192.168.1.110</td>
+              <td>Android / Chrome</td>
+              <td><span class="status-failed">Falha</span></td>
+            </tr>
+            <tr>
+              <td>Pedro Oliveira</td>
+              <td>15/06/2025 14:20</td>
+              <td>192.168.1.110</td>
+              <td>Android / Chrome</td>
+              <td><span class="status-failed">Falha</span></td>
+            </tr>
+            <tr>
+              <td>Ana Souza</td>
+              <td>15/06/2025 10:15</td>
+              <td>192.168.1.120</td>
+              <td>iOS / Safari</td>
+              <td><span class="status-success">Sucesso</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="security-section">
+      <div class="section-header">
+        <h3>Backup e Recuperação</h3>
+      </div>
+
+      <div class="backup-container">
+        <div class="backup-info">
+          <div class="info-item">
+            <div class="info-label">Último backup completo:</div>
+            <div class="info-value">18/06/2025 23:00</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Status:</div>
+            <div class="info-value success">Concluído com sucesso</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Tamanho:</div>
+            <div class="info-value">2.4 GB</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Local:</div>
+            <div class="info-value">Servidor local + Nuvem</div>
+          </div>
+        </div>
+
+        <div class="backup-actions">
+          <button class="primary-btn">Iniciar Backup Manual</button>
+          <button class="secondary-btn">Restaurar Backup</button>
+          <button class="secondary-btn">Configurar Backup Automático</button>
+        </div>
+
+        <div class="backup-schedule">
+          <h4>Programação de Backup</h4>
+          <div class="schedule-item">
+            <div class="schedule-type">Diário</div>
+            <div class="schedule-time">23:00</div>
+            <div class="schedule-status active">Ativo</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-type">Semanal (Domingo)</div>
+            <div class="schedule-time">02:00</div>
+            <div class="schedule-status active">Ativo</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-type">Mensal (Dia 1)</div>
+            <div class="schedule-time">03:00</div>
+            <div class="schedule-status active">Ativo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

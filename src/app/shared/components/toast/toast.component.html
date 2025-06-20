@@ -1,0 +1,62 @@
+<!-- Toast Container -->
+<div class="fixed top-4 right-4 z-50 flex flex-col gap-3 max-w-md w-full">
+  <!-- Individual Toasts -->
+  @for (toast of toasts; track toast.id) {
+    <div
+      class="flex items-start p-4 rounded-lg shadow-md border animate-slideIn"
+      [ngClass]="getBackgroundClass(toast.type)"
+      role="alert"
+      aria-live="assertive"
+    >
+      <!-- Icon -->
+      <div class="flex-shrink-0 mr-3">
+        <svg
+          class="w-5 h-5"
+          [ngClass]="getIconClass(toast.type)"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            [attr.d]="getIcon(toast.type)"
+          ></path>
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="flex-1 mr-2">
+        <!-- Title -->
+        <h4
+          *ngIf="toast.title"
+          class="text-sm font-semibold mb-1"
+          [ngClass]="getTitleClass(toast.type)"
+        >
+          {{ toast.title }}
+        </h4>
+
+        <!-- Message -->
+        <div
+          class="text-sm"
+          [ngClass]="getMessageClass(toast.type)"
+        >
+          {{ toast.message }}
+        </div>
+      </div>
+
+      <!-- Close Button -->
+      <button
+        (click)="removeToast(toast.id)"
+        class="flex-shrink-0 ml-auto -mt-1 -mr-1 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        aria-label="Close"
+      >
+        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  }
+</div>

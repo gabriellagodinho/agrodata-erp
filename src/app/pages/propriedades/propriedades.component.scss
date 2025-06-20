@@ -1,0 +1,41 @@
+/* Additional styles for propriedades component */
+:host {
+  display: block;
+  padding: 1rem;
+}
+
+/* Animation for card hover */
+.hover\:-translate-y-1:hover {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for the component */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Ensure images maintain aspect ratio */
+img {
+  object-fit: cover;
+}
+
+/* Ensure consistent height for culture tags */
+.rounded-full {
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+}

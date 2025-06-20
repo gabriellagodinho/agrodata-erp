@@ -1,0 +1,53 @@
+<div class="form-field-container" [ngClass]="{'mb-6': !isInvalid, 'mb-8': isInvalid}">
+  <!-- Label -->
+  <label
+    *ngIf="label"
+    [attr.for]="control?.name"
+    class="block text-sm font-medium mb-1"
+    [ngClass]="{'text-gray-700 dark:text-gray-300': !isInvalid, 'text-red-600 dark:text-red-400': isInvalid}"
+  >
+    {{ label }}
+    <span *ngIf="required" class="text-red-500 ml-1">*</span>
+  </label>
+
+  <!-- Input Field (Content Projection) -->
+  <div class="relative">
+    <ng-content></ng-content>
+
+    <!-- Valid Icon -->
+    <div
+      *ngIf="isValid"
+      class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-green-500"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+
+    <!-- Invalid Icon -->
+    <div
+      *ngIf="isInvalid"
+      class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-red-500"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Hint Text -->
+  <p
+    *ngIf="hint && !isInvalid"
+    class="mt-1 text-xs text-gray-500 dark:text-gray-400"
+  >
+    {{ hint }}
+  </p>
+
+  <!-- Error Message -->
+  <p
+    *ngIf="isInvalid"
+    class="mt-1 text-xs text-red-600 dark:text-red-400 animate-fadeIn"
+  >
+    {{ getErrorMessage() }}
+  </p>
+</div>

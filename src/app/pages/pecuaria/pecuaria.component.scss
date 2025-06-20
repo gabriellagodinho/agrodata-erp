@@ -1,0 +1,57 @@
+/* Additional styles for pecuaria component */
+:host {
+  display: block;
+  padding: 1rem;
+}
+
+/* Animation for tab transitions */
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar for tables */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Ensure consistent height for status badges */
+.rounded-full {
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hover effect for table rows */
+tr.hover\:bg-gray-50:hover {
+  transition: background-color 0.2s ease;
+}
+
+/* Active tab styling */
+button.active {
+  font-weight: 600;
+}

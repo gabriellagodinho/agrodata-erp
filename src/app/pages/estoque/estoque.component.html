@@ -1,0 +1,392 @@
+<div class="container mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">{{ title }}</h1>
+    <p class="mt-2 text-gray-600">{{ subtitle }}</p>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="mb-6 border-b border-gray-200">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+      <li class="mr-2">
+        <button
+          (click)="changeTab('insumos')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'insumos' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+          </svg>
+          Insumos
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeTab('produtos')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'produtos' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+          </svg>
+          Produtos
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="changeTab('armazens')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'armazens' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+          Armazéns
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Actions Bar -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+    <!-- Search -->
+    <div class="relative w-full md:w-96">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+      <input type="text" class="w-full py-2 pl-10 pr-4 text-sm text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Buscar...">
+    </div>
+
+    <!-- Filters and Add Button -->
+    <div class="flex items-center gap-3 w-full md:w-auto">
+      <div class="relative">
+        <select class="appearance-none bg-white border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm">
+          <option value="">Todos os status</option>
+          <option value="disponivel">Disponível</option>
+          <option value="baixo">Baixo Estoque</option>
+          <option value="reservado">Reservado</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+      </div>
+
+      <button class="flex items-center px-4 py-2 bg-primary-600 text-white rounded-2xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+        </svg>
+        Adicionar
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab Content: Insumos -->
+  <div *ngIf="activeTab === 'insumos'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Insumos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ insumos.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-secondary-100 text-secondary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Disponíveis</h3>
+            <p class="text-3xl font-bold text-gray-800">2</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-yellow-100 text-yellow-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Baixo Estoque</h3>
+            <p class="text-3xl font-bold text-gray-800">1</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Insumos Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantidade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Local</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (insumo of insumos; track insumo.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ insumo.codigo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ insumo.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ insumo.categoria }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ insumo.quantidade }} {{ insumo.unidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ insumo.localArmazenamento }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ insumo.dataValidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="{
+                          'bg-green-100 text-green-800': insumo.status === 'Disponível',
+                          'bg-yellow-100 text-yellow-800': insumo.status === 'Baixo Estoque',
+                          'bg-red-100 text-red-800': insumo.status === 'Indisponível'
+                        }">
+                    {{ insumo.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Produtos -->
+  <div *ngIf="activeTab === 'produtos'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Produtos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ produtos.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-secondary-100 text-secondary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Peso Total</h3>
+            <p class="text-3xl font-bold text-gray-800">48000 kg</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-tertiary-100 text-tertiary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Disponíveis</h3>
+            <p class="text-3xl font-bold text-gray-800">2</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produtos Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantidade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Local</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Colheita</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (produto of produtos; track produto.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ produto.codigo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ produto.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ produto.categoria }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ produto.quantidade }} {{ produto.unidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ produto.localArmazenamento }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ produto.dataColheita }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="{
+                          'bg-green-100 text-green-800': produto.status === 'Disponível',
+                          'bg-blue-100 text-blue-800': produto.status === 'Reservado',
+                          'bg-red-100 text-red-800': produto.status === 'Vendido'
+                        }">
+                    {{ produto.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Armazens -->
+  <div *ngIf="activeTab === 'armazens'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Armazéns</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ armazens.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-secondary-100 text-secondary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Operacionais</h3>
+            <p class="text-3xl font-bold text-gray-800">3</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-tertiary-100 text-tertiary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Capacidade Total</h3>
+            <p class="text-3xl font-bold text-gray-800">57000 kg</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Armazens Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (armazem of armazens; track armazem.id) {
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+          <div class="p-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800">{{ armazem.nome }}</h3>
+                <p class="text-sm text-gray-500">{{ armazem.codigo }}</p>
+              </div>
+              <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                {{ armazem.status }}
+              </span>
+            </div>
+
+            <div class="mt-4">
+              <div class="text-sm text-gray-600 mb-1">Tipo: {{ armazem.tipo }}</div>
+
+              <!-- Occupation Progress Bar -->
+              <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                  <div class="text-sm font-medium text-gray-700">Ocupação</div>
+                  <div class="text-sm font-medium text-gray-700">{{ (armazem.ocupacao / armazem.capacidade * 100).toFixed(0) }}%</div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div class="bg-primary-600 h-2.5 rounded-full" [style.width.%]="(armazem.ocupacao / armazem.capacidade * 100)"></div>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">{{ armazem.ocupacao }} / {{ armazem.capacidade }} {{ armazem.unidade }}</div>
+              </div>
+
+              <!-- Climate Info -->
+              <div class="grid grid-cols-2 gap-4 mt-4">
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <div class="text-xs text-gray-500">Temperatura</div>
+                  <div class="text-lg font-semibold text-gray-800">{{ armazem.temperatura }}°C</div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <div class="text-xs text-gray-500">Umidade</div>
+                  <div class="text-lg font-semibold text-gray-800">{{ armazem.umidade }}%</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex justify-between mt-6 pt-4 border-t border-gray-100">
+              <button class="text-sm text-primary-600 hover:text-primary-800 font-medium">
+                Ver Detalhes
+              </button>
+              <div class="flex space-x-2">
+                <button class="p-1 text-gray-500 hover:text-primary-600 rounded-full hover:bg-gray-100">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                  </svg>
+                </button>
+                <button class="p-1 text-gray-500 hover:text-primary-600 rounded-full hover:bg-gray-100">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

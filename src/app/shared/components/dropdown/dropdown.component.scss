@@ -1,0 +1,83 @@
+/* Additional styles for dropdown component */
+:host {
+  display: inline-block;
+}
+
+/* Animation for dropdown opening/closing */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dropdownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+
+/* Apply animation to dropdown menu */
+div[role="menu"] {
+  animation: dropdownFadeIn 0.2s ease-out;
+  transform-origin: top;
+}
+
+/* Ensure dropdown menu has proper z-index */
+.absolute {
+  z-index: 50;
+}
+
+/* Improve focus styles for dropdown items */
+button[role="menuitem"]:focus {
+  outline: 2px solid rgba(22, 163, 74, 0.5);
+  outline-offset: -2px;
+}
+
+/* Ensure proper spacing for dropdown items with icons */
+button[role="menuitem"] .flex {
+  min-height: 1.5rem;
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  button[role="menuitem"] {
+    text-align: left;
+  }
+}
+
+/* Fix for Safari */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    button[role="menuitem"] {
+      width: 100%;
+    }
+  }
+}
+
+/* Improve accessibility */
+button:focus {
+  outline: 2px solid rgba(22, 163, 74, 0.5);
+  outline-offset: 2px;
+}
+
+/* Ensure dropdown doesn't break layout on small screens */
+@media (max-width: 640px) {
+  :host {
+    display: block;
+    width: 100%;
+  }
+
+  button[type="button"] {
+    width: 100%;
+  }
+}

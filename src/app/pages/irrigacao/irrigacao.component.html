@@ -1,0 +1,148 @@
+<h2>Irrigação</h2>
+
+<div class="status-overview">
+  <div class="status-card">
+    <div class="status-icon">💧</div>
+    <div class="status-info">
+      <h3>Consumo Total</h3>
+      <div class="status-value">12,500 m³</div>
+      <div class="status-label">Últimos 30 dias</div>
+    </div>
+  </div>
+
+  <div class="status-card">
+    <div class="status-icon">🌧️</div>
+    <div class="status-info">
+      <h3>Precipitação</h3>
+      <div class="status-value">45 mm</div>
+      <div class="status-label">Últimos 7 dias</div>
+    </div>
+  </div>
+
+  <div class="status-card">
+    <div class="status-icon">🚰</div>
+    <div class="status-info">
+      <h3>Sistemas Ativos</h3>
+      <div class="status-value">8/12</div>
+      <div class="status-label">Em operação</div>
+    </div>
+  </div>
+
+  <div class="status-card">
+    <div class="status-icon">⚠️</div>
+    <div class="status-info">
+      <h3>Alertas</h3>
+      <div class="status-value">2</div>
+      <div class="status-label">Requerem atenção</div>
+    </div>
+  </div>
+</div>
+
+<div class="irrigation-map">
+  <h3>Mapa de Irrigação</h3>
+  <div class="map-container">
+    <div class="map-placeholder">
+      <!-- Mapa seria implementado aqui com uma biblioteca de mapas -->
+      <div class="map-overlay">Mapa de Irrigação da Propriedade</div>
+    </div>
+    <div class="map-legend">
+      <div class="legend-item">
+        <span class="color-box high-moisture"></span>
+        <span>Alta umidade</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box medium-moisture"></span>
+        <span>Umidade média</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box low-moisture"></span>
+        <span>Baixa umidade</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box critical-moisture"></span>
+        <span>Umidade crítica</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="irrigation-systems">
+  <div class="section-header">
+    <h3>Sistemas de Irrigação</h3>
+    <button class="add-system-btn">+ Adicionar Sistema</button>
+  </div>
+
+  <div class="systems-grid">
+    <div class="system-card">
+      <div class="card-header">
+        <h4>Pivô Central - Setor Norte</h4>
+        <div class="system-status active">Ativo</div>
+      </div>
+      <div class="system-details">
+        <p><strong>Área:</strong> 120 hectares</p>
+        <p><strong>Cultivo:</strong> Soja</p>
+        <p><strong>Última irrigação:</strong> Hoje, 06:30</p>
+        <p><strong>Próxima irrigação:</strong> Amanhã, 06:30</p>
+      </div>
+      <div class="system-controls">
+        <button class="control-btn">Iniciar</button>
+        <button class="control-btn">Parar</button>
+        <button class="control-btn">Programar</button>
+      </div>
+    </div>
+
+    <div class="system-card">
+      <div class="card-header">
+        <h4>Gotejamento - Setor Leste</h4>
+        <div class="system-status inactive">Inativo</div>
+      </div>
+      <div class="system-details">
+        <p><strong>Área:</strong> 45 hectares</p>
+        <p><strong>Cultivo:</strong> Café</p>
+        <p><strong>Última irrigação:</strong> Ontem, 15:45</p>
+        <p><strong>Próxima irrigação:</strong> Amanhã, 15:45</p>
+      </div>
+      <div class="system-controls">
+        <button class="control-btn">Iniciar</button>
+        <button class="control-btn">Parar</button>
+        <button class="control-btn">Programar</button>
+      </div>
+    </div>
+
+    <div class="system-card">
+      <div class="card-header">
+        <h4>Aspersão - Setor Sul</h4>
+        <div class="system-status warning">Manutenção</div>
+      </div>
+      <div class="system-details">
+        <p><strong>Área:</strong> 80 hectares</p>
+        <p><strong>Cultivo:</strong> Milho</p>
+        <p><strong>Última irrigação:</strong> 3 dias atrás</p>
+        <p><strong>Próxima irrigação:</strong> Pendente manutenção</p>
+      </div>
+      <div class="system-controls">
+        <button class="control-btn" disabled>Iniciar</button>
+        <button class="control-btn" disabled>Parar</button>
+        <button class="control-btn">Programar</button>
+      </div>
+    </div>
+
+    <div class="system-card">
+      <div class="card-header">
+        <h4>Pivô Central - Setor Oeste</h4>
+        <div class="system-status active">Ativo</div>
+      </div>
+      <div class="system-details">
+        <p><strong>Área:</strong> 110 hectares</p>
+        <p><strong>Cultivo:</strong> Algodão</p>
+        <p><strong>Última irrigação:</strong> Hoje, 08:15</p>
+        <p><strong>Próxima irrigação:</strong> Amanhã, 08:15</p>
+      </div>
+      <div class="system-controls">
+        <button class="control-btn">Iniciar</button>
+        <button class="control-btn">Parar</button>
+        <button class="control-btn">Programar</button>
+      </div>
+    </div>
+  </div>
+</div>

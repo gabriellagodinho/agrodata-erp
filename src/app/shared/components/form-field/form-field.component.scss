@@ -1,0 +1,84 @@
+/* Additional styles for form-field component */
+:host {
+  display: block;
+}
+
+/* Animation for error message */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Styling for form controls inside the form field */
+::ng-deep {
+  /* Input styling */
+  input, select, textarea {
+    @apply w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg transition-colors;
+
+    &:focus {
+      @apply outline-none ring-2 ring-primary-500 border-primary-500;
+    }
+
+    &:disabled {
+      @apply bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 cursor-not-allowed;
+    }
+  }
+
+  /* Invalid state styling */
+  .form-field-invalid {
+    input, select, textarea {
+      @apply border-red-500 dark:border-red-400;
+
+      &:focus {
+        @apply ring-red-500 border-red-500;
+      }
+    }
+  }
+
+  /* Valid state styling */
+  .form-field-valid {
+    input, select, textarea {
+      @apply border-green-500 dark:border-green-400;
+
+      &:focus {
+        @apply ring-green-500 border-green-500;
+      }
+    }
+  }
+}
+
+/* Improve accessibility */
+:host:focus-within label {
+  @apply text-primary-700 dark:text-primary-400;
+}
+
+/* Ensure consistent spacing */
+.form-field-container {
+  margin-bottom: 1.5rem;
+}
+
+/* Ensure proper spacing when in side-by-side layout */
+:host.items-center label {
+  @apply mr-4 mb-0 min-w-[120px];
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  :host.items-center {
+    @apply flex-col items-start;
+
+    label {
+      @apply mb-1 mr-0;
+    }
+  }
+}

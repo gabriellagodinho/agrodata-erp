@@ -1,0 +1,179 @@
+<h2>Funcionários</h2>
+
+<div class="employee-actions">
+  <div class="search-box">
+    <input type="text" placeholder="Buscar funcionário...">
+    <button class="search-btn">🔍</button>
+  </div>
+  <div class="filter-options">
+    <select>
+      <option value="">Todos os departamentos</option>
+      <option value="campo">Campo</option>
+      <option value="administrativo">Administrativo</option>
+      <option value="logistica">Logística</option>
+      <option value="manutencao">Manutenção</option>
+    </select>
+    <select>
+      <option value="">Todos os status</option>
+      <option value="ativo">Ativo</option>
+      <option value="ferias">Em férias</option>
+      <option value="licenca">Em licença</option>
+      <option value="inativo">Inativo</option>
+    </select>
+  </div>
+  <button class="add-employee-btn">+ Adicionar Funcionário</button>
+</div>
+
+<div class="employee-stats">
+  <div class="stat-card">
+    <div class="stat-value">42</div>
+    <div class="stat-label">Total de Funcionários</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">35</div>
+    <div class="stat-label">Ativos</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">4</div>
+    <div class="stat-label">Em Férias</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Em Licença</div>
+  </div>
+</div>
+
+<div class="employee-table-container">
+  <table class="employee-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Departamento</th>
+        <th>Data de Admissão</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="employee-name">
+            <div class="employee-avatar">JD</div>
+            <div>João da Silva</div>
+          </div>
+        </td>
+        <td>Operador de Máquinas</td>
+        <td>Campo</td>
+        <td>15/03/2023</td>
+        <td><span class="status-active">Ativo</span></td>
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Ver</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="employee-name">
+            <div class="employee-avatar">MS</div>
+            <div>Maria Santos</div>
+          </div>
+        </td>
+        <td>Gerente Administrativo</td>
+        <td>Administrativo</td>
+        <td>10/01/2022</td>
+        <td><span class="status-vacation">Em férias</span></td>
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Ver</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="employee-name">
+            <div class="employee-avatar">PO</div>
+            <div>Pedro Oliveira</div>
+          </div>
+        </td>
+        <td>Técnico Agrícola</td>
+        <td>Campo</td>
+        <td>05/06/2023</td>
+        <td><span class="status-active">Ativo</span></td>
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Ver</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="employee-name">
+            <div class="employee-avatar">AS</div>
+            <div>Ana Souza</div>
+          </div>
+        </td>
+        <td>Analista Financeiro</td>
+        <td>Administrativo</td>
+        <td>20/02/2022</td>
+        <td><span class="status-active">Ativo</span></td>
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Ver</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="employee-name">
+            <div class="employee-avatar">CR</div>
+            <div>Carlos Rodrigues</div>
+          </div>
+        </td>
+        <td>Motorista</td>
+        <td>Logística</td>
+        <td>12/08/2023</td>
+        <td><span class="status-leave">Em licença</span></td>
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Ver</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="employee-name">
+            <div class="employee-avatar">LM</div>
+            <div>Luciana Martins</div>
+          </div>
+        </td>
+        <td>Técnica de Segurança</td>
+        <td>Administrativo</td>
+        <td>03/04/2023</td>
+        <td><span class="status-active">Ativo</span></td>
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Ver</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <button class="page-btn">Anterior</button>
+  <div class="page-numbers">
+    <button class="page-number active">1</button>
+    <button class="page-number">2</button>
+    <button class="page-number">3</button>
+  </div>
+  <button class="page-btn">Próximo</button>
+</div>

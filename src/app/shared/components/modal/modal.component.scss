@@ -1,0 +1,100 @@
+/* Additional styles for modal component */
+:host {
+  display: block;
+}
+
+/* Animation for modal backdrop */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Animation for modal content */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Ensure modal is scrollable if content is too long */
+.fixed.inset-0 {
+  overflow-y: auto;
+}
+
+/* Improve focus management for accessibility */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(22, 163, 74, 0.5);
+  outline-offset: 2px;
+}
+
+/* Ensure proper spacing for modal content */
+.p-6 {
+  padding: 1.5rem;
+}
+
+/* Ensure proper spacing for modal footer buttons */
+.gap-3 {
+  gap: 0.75rem;
+}
+
+/* Ensure proper z-index for modal */
+.z-50 {
+  z-index: 50;
+}
+
+/* Ensure proper border radius for modal */
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+/* Ensure proper shadow for modal */
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Ensure proper background opacity for backdrop */
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
+}
+
+/* Ensure proper transition for hover effects */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  .fixed.inset-0 {
+    height: 100vh;
+  }
+}
+
+/* Fix for Safari */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    .fixed.inset-0 {
+      height: -webkit-fill-available;
+    }
+  }
+}

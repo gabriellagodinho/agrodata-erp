@@ -1,0 +1,22 @@
+/* Additional styles for breadcrumb component */
+:host {
+  display: block;
+}
+
+/* Animation for breadcrumb hover */
+a {
+  transition: color 0.2s ease-in-out;
+}
+
+/* Ensure consistent spacing in different browsers */
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Improve accessibility */
+a:focus {
+  outline: 2px solid rgba(22, 163, 74, 0.5);
+  outline-offset: 2px;
+}

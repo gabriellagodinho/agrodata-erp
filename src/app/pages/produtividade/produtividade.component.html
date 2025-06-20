@@ -1,0 +1,231 @@
+<h2>Produtividade</h2>
+
+<div class="productivity-actions">
+  <div class="filter-options">
+    <select>
+      <option value="">Todos os cultivos</option>
+      <option value="soja">Soja</option>
+      <option value="milho">Milho</option>
+      <option value="algodao">Algodão</option>
+      <option value="cafe">Café</option>
+    </select>
+    <select>
+      <option value="">Todos os períodos</option>
+      <option value="safra-atual">Safra Atual</option>
+      <option value="safra-anterior">Safra Anterior</option>
+      <option value="ultimos-5-anos">Últimos 5 anos</option>
+    </select>
+  </div>
+  <div class="export-options">
+    <button class="export-btn">Exportar Dados</button>
+  </div>
+</div>
+
+<div class="productivity-overview">
+  <div class="overview-card">
+    <div class="card-icon">🌾</div>
+    <div class="card-info">
+      <h3>Produtividade Média</h3>
+      <div class="value">3.8 ton/ha</div>
+      <div class="trend positive">+8% em relação à safra anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <div class="card-icon">🌱</div>
+    <div class="card-info">
+      <h3>Área Cultivada</h3>
+      <div class="value">850 ha</div>
+      <div class="trend positive">+5% em relação à safra anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <div class="card-icon">🚜</div>
+    <div class="card-info">
+      <h3>Eficiência Operacional</h3>
+      <div class="value">92%</div>
+      <div class="trend positive">+3% em relação à safra anterior</div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <div class="card-icon">💧</div>
+    <div class="card-info">
+      <h3>Eficiência Hídrica</h3>
+      <div class="value">85%</div>
+      <div class="trend positive">+7% em relação à safra anterior</div>
+    </div>
+  </div>
+</div>
+
+<div class="productivity-charts">
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>Produtividade por Cultivo</h3>
+      <div class="chart-actions">
+        <select>
+          <option>Safra Atual</option>
+          <option>Safra Anterior</option>
+          <option>Comparativo</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-placeholder">
+      <!-- Aqui seria implementado um gráfico de barras com uma biblioteca como Chart.js -->
+      <div class="chart-message">Gráfico de Produtividade por Cultivo</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-header">
+      <h3>Evolução da Produtividade</h3>
+      <div class="chart-actions">
+        <select>
+          <option>Últimos 5 anos</option>
+          <option>Últimos 10 anos</option>
+          <option>Personalizado</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-placeholder">
+      <!-- Aqui seria implementado um gráfico de linha com uma biblioteca como Chart.js -->
+      <div class="chart-message">Gráfico de Evolução da Produtividade</div>
+    </div>
+  </div>
+</div>
+
+<div class="productivity-details">
+  <div class="section-header">
+    <h3>Detalhamento por Área</h3>
+    <div class="section-actions">
+      <button class="view-all-btn">Ver Todos</button>
+    </div>
+  </div>
+
+  <div class="areas-grid">
+    <div class="area-card">
+      <div class="area-header">
+        <h4>Fazenda Norte - Soja</h4>
+        <div class="area-badge high">Alta Produtividade</div>
+      </div>
+      <div class="area-stats">
+        <div class="stat-item">
+          <div class="stat-label">Área:</div>
+          <div class="stat-value">250 ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produtividade:</div>
+          <div class="stat-value">4.2 ton/ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produção Total:</div>
+          <div class="stat-value">1,050 ton</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Custo/ha:</div>
+          <div class="stat-value">R$ 4,800</div>
+        </div>
+      </div>
+      <div class="area-chart">
+        <div class="mini-chart-placeholder">
+          <!-- Mini gráfico seria implementado aqui -->
+          <div class="mini-chart-message">Histórico de Produtividade</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="area-card">
+      <div class="area-header">
+        <h4>Fazenda Sul - Milho</h4>
+        <div class="area-badge medium">Média Produtividade</div>
+      </div>
+      <div class="area-stats">
+        <div class="stat-item">
+          <div class="stat-label">Área:</div>
+          <div class="stat-value">180 ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produtividade:</div>
+          <div class="stat-value">8.5 ton/ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produção Total:</div>
+          <div class="stat-value">1,530 ton</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Custo/ha:</div>
+          <div class="stat-value">R$ 5,200</div>
+        </div>
+      </div>
+      <div class="area-chart">
+        <div class="mini-chart-placeholder">
+          <!-- Mini gráfico seria implementado aqui -->
+          <div class="mini-chart-message">Histórico de Produtividade</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="area-card">
+      <div class="area-header">
+        <h4>Fazenda Leste - Algodão</h4>
+        <div class="area-badge high">Alta Produtividade</div>
+      </div>
+      <div class="area-stats">
+        <div class="stat-item">
+          <div class="stat-label">Área:</div>
+          <div class="stat-value">150 ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produtividade:</div>
+          <div class="stat-value">3.8 ton/ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produção Total:</div>
+          <div class="stat-value">570 ton</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Custo/ha:</div>
+          <div class="stat-value">R$ 7,500</div>
+        </div>
+      </div>
+      <div class="area-chart">
+        <div class="mini-chart-placeholder">
+          <!-- Mini gráfico seria implementado aqui -->
+          <div class="mini-chart-message">Histórico de Produtividade</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="area-card">
+      <div class="area-header">
+        <h4>Fazenda Oeste - Café</h4>
+        <div class="area-badge low">Baixa Produtividade</div>
+      </div>
+      <div class="area-stats">
+        <div class="stat-item">
+          <div class="stat-label">Área:</div>
+          <div class="stat-value">100 ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produtividade:</div>
+          <div class="stat-value">1.8 ton/ha</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Produção Total:</div>
+          <div class="stat-value">180 ton</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Custo/ha:</div>
+          <div class="stat-value">R$ 9,200</div>
+        </div>
+      </div>
+      <div class="area-chart">
+        <div class="mini-chart-placeholder">
+          <!-- Mini gráfico seria implementado aqui -->
+          <div class="mini-chart-message">Histórico de Produtividade</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

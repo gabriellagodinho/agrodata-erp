@@ -1,0 +1,26 @@
+<nav aria-label="Breadcrumb" class="mb-4">
+  <ol class="flex flex-wrap items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
+    <li *ngFor="let breadcrumb of breadcrumbs; let last = last" class="flex items-center">
+      <a
+        *ngIf="!last"
+        [routerLink]="breadcrumb.url"
+        class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+      >
+        {{ breadcrumb.label }}
+      </a>
+      <span *ngIf="last" class="text-gray-700 dark:text-gray-300 font-medium">{{ breadcrumb.label }}</span>
+
+      <!-- Separator -->
+      <svg
+        *ngIf="!last"
+        class="w-4 h-4 mx-1 text-gray-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </li>
+  </ol>
+</nav>

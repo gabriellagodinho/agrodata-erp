@@ -1,0 +1,65 @@
+/* Additional styles for button component */
+:host {
+  display: inline-block;
+}
+
+/* Animation for loading spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Improve focus visibility for accessibility */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.5);
+}
+
+/* Ensure consistent height for different button sizes */
+button {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+/* Ensure proper spacing for icons */
+[icon-left], [icon-right] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Improve hover effects */
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure proper spacing when fullWidth is true */
+:host.block {
+  display: block;
+  width: 100%;
+}
+
+/* Ensure proper spacing for loading state */
+.opacity-0 {
+  opacity: 0;
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  button {
+    overflow: hidden;
+  }
+}

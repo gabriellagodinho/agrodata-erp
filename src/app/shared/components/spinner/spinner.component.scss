@@ -1,0 +1,129 @@
+/* Additional styles for spinner component */
+:host {
+  display: inline-block;
+}
+
+/* Animation for spinner rotation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Ensure proper z-index for fullscreen spinner */
+.fixed.inset-0.z-50 {
+  z-index: 50;
+}
+
+/* Ensure proper opacity for overlay */
+.bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dark .dark\:bg-gray-900\/80 {
+  background-color: rgba(17, 24, 39, 0.8);
+}
+
+/* Ensure proper sizing for spinner */
+.w-4.h-4 {
+  width: 1rem;
+  height: 1rem;
+}
+
+.w-8.h-8 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.w-10.h-10 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.w-16.h-16 {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* Ensure proper spacing for label */
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+/* Ensure proper font weight for label */
+.font-medium {
+  font-weight: 500;
+}
+
+/* Ensure proper text size for label */
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+/* Ensure proper centering for container */
+.flex.flex-col.items-center.justify-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure proper opacity for spinner parts */
+.opacity-25 {
+  opacity: 0.25;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+}
+
+/* Fix for Safari */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+  }
+}
