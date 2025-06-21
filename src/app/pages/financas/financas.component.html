@@ -1,194 +1,554 @@
-<h2>Finanças</h2>
-
-<div class="finance-actions">
-  <div class="period-selector">
-    <button class="period-btn active">Mês Atual</button>
-    <button class="period-btn">Trimestre</button>
-    <button class="period-btn">Ano</button>
-    <button class="period-btn">Personalizado</button>
+<div class="container mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">{{ title }}</h1>
+    <p class="mt-2 text-gray-600">Gestão financeira e análise de custos</p>
   </div>
-  <div class="export-options">
-    <button class="export-btn">Exportar Relatório</button>
-  </div>
-</div>
 
-<div class="finance-overview">
-  <div class="overview-card revenue">
-    <div class="card-icon">💰</div>
-    <div class="card-info">
-      <h3>Receitas</h3>
-      <div class="amount">R$ 450.000,00</div>
-      <div class="trend positive">+12% em relação ao mês anterior</div>
+  <!-- Tabs Navigation -->
+  <div class="mb-6 border-b border-gray-200">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+      <li class="mr-2">
+        <button
+          (click)="changeView('geral')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeView === 'geral' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          Visão Geral
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeView('fiscal')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeView === 'fiscal' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-6-8h6M5 5h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"></path>
+          </svg>
+          Custo Fiscal
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeView('real')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeView === 'real' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Custo Real
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="changeView('comparativo')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeView === 'comparativo' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          Comparativo
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Period Selector -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+    <div class="flex items-center space-x-2">
+      <button
+        (click)="changePeriod('mes')"
+        class="px-4 py-2 rounded-2xl text-sm font-medium"
+        [ngClass]="activePeriod === 'mes' ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+      >
+        Mês Atual
+      </button>
+      <button
+        (click)="changePeriod('trimestre')"
+        class="px-4 py-2 rounded-2xl text-sm font-medium"
+        [ngClass]="activePeriod === 'trimestre' ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+      >
+        Trimestre
+      </button>
+      <button
+        (click)="changePeriod('ano')"
+        class="px-4 py-2 rounded-2xl text-sm font-medium"
+        [ngClass]="activePeriod === 'ano' ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+      >
+        Ano
+      </button>
+      <button
+        (click)="changePeriod('personalizado')"
+        class="px-4 py-2 rounded-2xl text-sm font-medium"
+        [ngClass]="activePeriod === 'personalizado' ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+      >
+        Personalizado
+      </button>
     </div>
+    <button class="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-2xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+      </svg>
+      Exportar Relatório
+    </button>
   </div>
 
-  <div class="overview-card expenses">
-    <div class="card-icon">📉</div>
-    <div class="card-info">
-      <h3>Despesas</h3>
-      <div class="amount">R$ 320.000,00</div>
-      <div class="trend negative">+5% em relação ao mês anterior</div>
-    </div>
-  </div>
+  <!-- General View -->
+  <div *ngIf="activeView === 'geral'" class="animate-fadeIn">
+    <!-- Overview Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Receitas</h3>
+            <p class="text-3xl font-bold text-gray-800">R$ 450.000,00</p>
+            <p class="text-sm text-green-600">+12% em relação ao mês anterior</p>
+          </div>
+        </div>
+      </div>
 
-  <div class="overview-card profit">
-    <div class="card-icon">📈</div>
-    <div class="card-info">
-      <h3>Lucro</h3>
-      <div class="amount">R$ 130.000,00</div>
-      <div class="trend positive">+35% em relação ao mês anterior</div>
-    </div>
-  </div>
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-red-100 text-red-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Despesas</h3>
+            <p class="text-3xl font-bold text-gray-800">R$ 320.000,00</p>
+            <p class="text-sm text-red-600">+5% em relação ao mês anterior</p>
+          </div>
+        </div>
+      </div>
 
-  <div class="overview-card pending">
-    <div class="card-icon">⏳</div>
-    <div class="card-info">
-      <h3>A Receber</h3>
-      <div class="amount">R$ 85.000,00</div>
-      <div class="trend neutral">3 faturas pendentes</div>
-    </div>
-  </div>
-</div>
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Lucro</h3>
+            <p class="text-3xl font-bold text-gray-800">R$ 130.000,00</p>
+            <p class="text-sm text-primary-600">+35% em relação ao mês anterior</p>
+          </div>
+        </div>
+      </div>
 
-<div class="finance-charts">
-  <div class="chart-container">
-    <div class="chart-header">
-      <h3>Fluxo de Caixa</h3>
-      <div class="chart-actions">
-        <select>
-          <option>Últimos 6 meses</option>
-          <option>Último ano</option>
-          <option>Personalizado</option>
-        </select>
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-yellow-100 text-yellow-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">A Receber</h3>
+            <p class="text-3xl font-bold text-gray-800">R$ 85.000,00</p>
+            <p class="text-sm text-gray-600">3 faturas pendentes</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="chart-placeholder">
-      <!-- Aqui seria implementado um gráfico de linha com uma biblioteca como Chart.js -->
-      <div class="chart-message">Gráfico de Fluxo de Caixa</div>
-    </div>
-  </div>
 
-  <div class="chart-container">
-    <div class="chart-header">
-      <h3>Despesas por Categoria</h3>
-      <div class="chart-actions">
-        <select>
-          <option>Mês atual</option>
-          <option>Último trimestre</option>
-          <option>Último ano</option>
-        </select>
+    <!-- Charts -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold text-gray-800">Fluxo de Caixa</h3>
+          <select class="bg-white border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm">
+            <option>Últimos 6 meses</option>
+            <option>Último ano</option>
+            <option>Personalizado</option>
+          </select>
+        </div>
+        <div class="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
+          <p class="text-gray-500">Gráfico de Fluxo de Caixa</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold text-gray-800">Despesas por Categoria</h3>
+          <select class="bg-white border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm">
+            <option>Mês atual</option>
+            <option>Último trimestre</option>
+            <option>Último ano</option>
+          </select>
+        </div>
+        <div class="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
+          <p class="text-gray-500">Gráfico de Despesas por Categoria</p>
+        </div>
       </div>
     </div>
-    <div class="chart-placeholder">
-      <!-- Aqui seria implementado um gráfico de pizza com uma biblioteca como Chart.js -->
-      <div class="chart-message">Gráfico de Despesas por Categoria</div>
+
+    <!-- Tables -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+          <h3 class="text-lg font-semibold text-gray-800">Últimas Transações</h3>
+          <button class="text-sm text-primary-600 hover:text-primary-800 font-medium">Ver Todas</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15/06/2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Venda de Soja - Lote 3</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Vendas</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">R$ 120.000,00</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Concluído</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12/06/2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Compra de Fertilizantes</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Insumos</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">R$ 45.000,00</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Concluído</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10/06/2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Manutenção de Maquinário</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Manutenção</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">R$ 12.500,00</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Concluído</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+          <h3 class="text-lg font-semibold text-gray-800">Contas a Pagar</h3>
+          <button class="text-sm text-primary-600 hover:text-primary-800 font-medium">Ver Todas</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vencimento</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fornecedor</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">25/06/2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Compra de Defensivos</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">AgroDefesa Ltda.</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">R$ 35.000,00</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex space-x-2">
+                    <button class="px-2 py-1 bg-primary-600 text-white text-xs rounded hover:bg-primary-700">Pagar</button>
+                    <button class="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded hover:bg-gray-300">Detalhes</button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">28/06/2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Serviço de Consultoria</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">AgroConsult S.A.</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">R$ 8.500,00</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex space-x-2">
+                    <button class="px-2 py-1 bg-primary-600 text-white text-xs rounded hover:bg-primary-700">Pagar</button>
+                    <button class="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded hover:bg-gray-300">Detalhes</button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">30/06/2025</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Aluguel de Equipamentos</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MaquiRent</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">R$ 12.000,00</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex space-x-2">
+                    <button class="px-2 py-1 bg-primary-600 text-white text-xs rounded hover:bg-primary-700">Pagar</button>
+                    <button class="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded hover:bg-gray-300">Detalhes</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="finance-tables">
-  <div class="table-container">
-    <div class="table-header">
-      <h3>Últimas Transações</h3>
-      <button class="view-all-btn">Ver Todas</button>
+  <!-- Fiscal Cost View -->
+  <div *ngIf="activeView === 'fiscal'" class="animate-fadeIn">
+    <div class="bg-white rounded-2xl shadow-md p-6 mb-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Custo Fiscal</h3>
+      <p class="text-gray-600 mb-4">Valores pagos com notas fiscais registradas.</p>
+
+      <!-- Fiscal Cost Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Total de Custos Fiscais</h4>
+          <p class="text-3xl font-bold text-gray-800">{{ formatCurrency(custosFiscais.total) }}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Maior Categoria</h4>
+          <p class="text-3xl font-bold text-gray-800">Insumos</p>
+          <p class="text-lg text-gray-600">{{ formatCurrency(custosFiscais.insumos) }}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Percentual da Receita</h4>
+          <p class="text-3xl font-bold text-gray-800">71.1%</p>
+          <p class="text-lg text-gray-600">R$ 320K / R$ 450K</p>
+        </div>
+      </div>
+
+      <!-- Fiscal Cost Breakdown -->
+      <div class="mt-8">
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">Detalhamento de Custos Fiscais</h4>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% do Total</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Insumos</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosFiscais.insumos) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosFiscais.insumos / custosFiscais.total * 100).toFixed(1) }}%</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Mão de Obra</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosFiscais.maodeobra) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosFiscais.maodeobra / custosFiscais.total * 100).toFixed(1) }}%</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Maquinário</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosFiscais.maquinario) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosFiscais.maquinario / custosFiscais.total * 100).toFixed(1) }}%</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Serviços</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosFiscais.servicos) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosFiscais.servicos / custosFiscais.total * 100).toFixed(1) }}%</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Impostos</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosFiscais.impostos) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosFiscais.impostos / custosFiscais.total * 100).toFixed(1) }}%</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Outros</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosFiscais.outros) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosFiscais.outros / custosFiscais.total * 100).toFixed(1) }}%</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">Total</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">{{ formatCurrency(custosFiscais.total) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">100.0%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <table class="finance-table">
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Descrição</th>
-          <th>Categoria</th>
-          <th>Valor</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>15/06/2025</td>
-          <td>Venda de Soja - Lote 3</td>
-          <td>Vendas</td>
-          <td class="amount positive">R$ 120.000,00</td>
-          <td><span class="status completed">Concluído</span></td>
-        </tr>
-        <tr>
-          <td>12/06/2025</td>
-          <td>Compra de Fertilizantes</td>
-          <td>Insumos</td>
-          <td class="amount negative">R$ 45.000,00</td>
-          <td><span class="status completed">Concluído</span></td>
-        </tr>
-        <tr>
-          <td>10/06/2025</td>
-          <td>Manutenção de Maquinário</td>
-          <td>Manutenção</td>
-          <td class="amount negative">R$ 12.500,00</td>
-          <td><span class="status completed">Concluído</span></td>
-        </tr>
-        <tr>
-          <td>05/06/2025</td>
-          <td>Pagamento de Funcionários</td>
-          <td>Folha de Pagamento</td>
-          <td class="amount negative">R$ 85.000,00</td>
-          <td><span class="status completed">Concluído</span></td>
-        </tr>
-        <tr>
-          <td>01/06/2025</td>
-          <td>Venda de Milho - Lote 2</td>
-          <td>Vendas</td>
-          <td class="amount positive">R$ 95.000,00</td>
-          <td><span class="status completed">Concluído</span></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
-  <div class="table-container">
-    <div class="table-header">
-      <h3>Contas a Pagar</h3>
-      <button class="view-all-btn">Ver Todas</button>
+  <!-- Real Cost View -->
+  <div *ngIf="activeView === 'real'" class="animate-fadeIn">
+    <div class="bg-white rounded-2xl shadow-md p-6 mb-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Custo Real de Produção</h3>
+      <p class="text-gray-600 mb-4">Inclui gastos que não aparecem fiscalmente, como abertura de áreas, manutenção com recursos próprios e mão de obra familiar.</p>
+
+      <!-- Real Cost Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Total de Custos Reais</h4>
+          <p class="text-3xl font-bold text-gray-800">{{ formatCurrency(custosReais.total) }}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Maior Categoria</h4>
+          <p class="text-3xl font-bold text-gray-800">Insumos</p>
+          <p class="text-lg text-gray-600">{{ formatCurrency(custosReais.insumos) }}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Percentual da Receita</h4>
+          <p class="text-3xl font-bold text-gray-800">95.6%</p>
+          <p class="text-lg text-gray-600">R$ 430K / R$ 450K</p>
+        </div>
+      </div>
+
+      <!-- Real Cost Breakdown -->
+      <div class="mt-8">
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">Detalhamento de Custos Reais</h4>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% do Total</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Observação</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Insumos</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.insumos) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.insumos / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Mão de Obra</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.maodeobra) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.maodeobra / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Inclui mão de obra familiar</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Maquinário</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.maquinario) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.maquinario / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Inclui manutenção interna</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Abertura de Áreas</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.aberturaAreas) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.aberturaAreas / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Não aparece no fiscal</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Manutenção Interna</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.manutencaoInterna) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.manutencaoInterna / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Não aparece no fiscal</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Serviços</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.servicos) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.servicos / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Impostos</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.impostos) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.impostos / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Outros</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(custosReais.outros) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ (custosReais.outros / custosReais.total * 100).toFixed(1) }}%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">Total</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">{{ formatCurrency(custosReais.total) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">100.0%</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <table class="finance-table">
-      <thead>
-        <tr>
-          <th>Vencimento</th>
-          <th>Descrição</th>
-          <th>Fornecedor</th>
-          <th>Valor</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>25/06/2025</td>
-          <td>Compra de Defensivos</td>
-          <td>AgroDefesa Ltda.</td>
-          <td class="amount negative">R$ 35.000,00</td>
-          <td>
-            <button class="small-btn">Pagar</button>
-            <button class="small-btn">Detalhes</button>
-          </td>
-        </tr>
-        <tr>
-          <td>28/06/2025</td>
-          <td>Serviço de Consultoria</td>
-          <td>AgroConsult S.A.</td>
-          <td class="amount negative">R$ 8.500,00</td>
-          <td>
-            <button class="small-btn">Pagar</button>
-            <button class="small-btn">Detalhes</button>
-          </td>
-        </tr>
-        <tr>
-          <td>30/06/2025</td>
-          <td>Aluguel de Equipamentos</td>
-          <td>MaquiRent</td>
-          <td class="amount negative">R$ 12.000,00</td>
-          <td>
-            <button class="small-btn">Pagar</button>
-            <button class="small-btn">Detalhes</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  </div>
+
+  <!-- Comparative View -->
+  <div *ngIf="activeView === 'comparativo'" class="animate-fadeIn">
+    <div class="bg-white rounded-2xl shadow-md p-6 mb-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Comparativo: Custo Real x Custo Fiscal</h3>
+      <p class="text-gray-600 mb-4">Análise comparativa entre os custos reais de produção e os custos fiscais registrados.</p>
+
+      <!-- Comparative Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Diferença Total</h4>
+          <p class="text-3xl font-bold text-gray-800">{{ formatCurrency(custosReais.total - custosFiscais.total) }}</p>
+          <p class="text-lg text-gray-600">+{{ ((custosReais.total - custosFiscais.total) / custosFiscais.total * 100).toFixed(1) }}%</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Custo Fiscal</h4>
+          <p class="text-3xl font-bold text-gray-800">{{ formatCurrency(custosFiscais.total) }}</p>
+          <p class="text-lg text-gray-600">71.1% da receita</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h4 class="text-lg font-semibold text-gray-700 mb-2">Custo Real</h4>
+          <p class="text-3xl font-bold text-gray-800">{{ formatCurrency(custosReais.total) }}</p>
+          <p class="text-lg text-gray-600">95.6% da receita</p>
+        </div>
+      </div>
+
+      <!-- Comparative Chart Placeholder -->
+      <div class="mt-8 mb-8">
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">Gráfico Comparativo</h4>
+        <div class="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
+          <p class="text-gray-500">Gráfico Comparativo de Custos Reais x Fiscais</p>
+        </div>
+      </div>
+
+      <!-- Comparative Table -->
+      <div class="mt-8">
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">Detalhamento Comparativo</h4>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Custo Fiscal</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Custo Real</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Diferença</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Variação %</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              @for (item of comparativoCustos; track item.categoria) {
+                <tr class="hover:bg-gray-50" [ngClass]="{'font-bold': item.categoria === 'Total', 'bg-gray-50': item.categoria === 'Total'}">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ item.categoria }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(item.fiscal) }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ formatCurrency(item.real) }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm" [ngClass]="{'text-red-600': item.diferenca > 0, 'text-green-600': item.diferenca < 0, 'text-gray-500': item.diferenca === 0}">
+                    {{ formatCurrency(item.diferenca) }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm" [ngClass]="{'text-red-600': item.diferenca > 0, 'text-green-600': item.diferenca < 0, 'text-gray-500': item.diferenca === 0}">
+                    {{ item.fiscal === 0 ? '∞' : ((item.real - item.fiscal) / item.fiscal * 100).toFixed(1) + '%' }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

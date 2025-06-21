@@ -181,7 +181,7 @@
 
             <!-- Regular Cell -->
             <span *ngIf="column.type !== 'status'">
-              {{ column.formatter ? column.formatter(item[column.key], item) : item[column.key] }}
+              {{ column.formatter?.(item[column.key], item) ?? item[column.key] }}
             </span>
           </td>
 

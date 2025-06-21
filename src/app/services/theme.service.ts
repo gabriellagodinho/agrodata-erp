@@ -8,57 +8,42 @@ export class ThemeService {
   private isDarkMode = new BehaviorSubject<boolean>(false);
 
   constructor() {
-    // Check if user has a saved preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      this.setDarkMode(savedTheme === 'dark');
-    } else {
-      // Check if user prefers dark mode at OS level
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.setDarkMode(prefersDark);
-    }
+    // Always use light mode
+    localStorage.setItem('theme', 'light');
 
-    // Listen for changes in OS theme preference
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (!localStorage.getItem('theme')) {
-        this.setDarkMode(e.matches);
-      }
-    });
+    // Ensure dark mode class is removed from document
+    document.documentElement.classList.remove('dark');
   }
 
   /**
-   * Get the current dark mode state
+   * Get the current dark mode state (always false)
    */
   isDarkMode$(): Observable<boolean> {
     return this.isDarkMode.asObservable();
   }
 
   /**
-   * Get the current dark mode value
+   * Get the current dark mode value (always false)
    */
   isDarkModeValue(): boolean {
-    return this.isDarkMode.value;
+    return false;
   }
 
   /**
-   * Set dark mode state
+   * Set dark mode state (no-op, always sets to light mode)
    */
   setDarkMode(isDark: boolean): void {
-    this.isDarkMode.next(isDark);
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-    // Apply theme to document
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    // Always use light mode regardless of input
+    this.isDarkMode.next(false);
+    localStorage.setItem('theme', 'light');
+    document.documentElement.classList.remove('dark');
   }
 
   /**
-   * Toggle between light and dark mode
+   * Toggle between light and dark mode (no-op, always stays in light mode)
    */
   toggleDarkMode(): void {
-    this.setDarkMode(!this.isDarkMode.value);
+    // No-op, always stay in light mode
+    this.setDarkMode(false);
   }
 }

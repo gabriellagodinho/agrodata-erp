@@ -32,7 +32,7 @@
           Produtos
         </button>
       </li>
-      <li>
+      <li class="mr-2">
         <button
           (click)="changeTab('armazens')"
           class="inline-flex items-center px-4 py-2 rounded-t-lg"
@@ -42,6 +42,30 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
           </svg>
           Armazéns
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeTab('combustiveis')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'combustiveis' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+          </svg>
+          Combustíveis
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="changeTab('oleos')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'oleos' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+          </svg>
+          Óleos e Lubrificantes
         </button>
       </li>
     </ul>
@@ -387,6 +411,339 @@
           </div>
         </div>
       }
+    </div>
+  </div>
+
+  <!-- Tab Content: Combustíveis -->
+  <div *ngIf="activeTab === 'combustiveis'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Combustíveis</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ combustiveis.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-secondary-100 text-secondary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Disponíveis</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ combustiveis.length - getLowStockCount(combustiveis) }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-yellow-100 text-yellow-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Baixo Estoque</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ getLowStockCount(combustiveis) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fuel Inventory Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden mb-8">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-800">Estoque de Combustíveis</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantidade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Local</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Última Recarga</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estoque Mínimo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (combustivel of combustiveis; track combustivel.id) {
+              <tr class="hover:bg-gray-50" [ngClass]="{'bg-yellow-50': isLowStock(combustivel)}">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ combustivel.codigo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ combustivel.tipo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ combustivel.quantidade }} {{ combustivel.unidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ combustivel.localArmazenamento }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ combustivel.ultimaRecarga }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ combustivel.estoqueMinimo }} {{ combustivel.unidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="{
+                          'bg-green-100 text-green-800': combustivel.status === 'Disponível',
+                          'bg-yellow-100 text-yellow-800': combustivel.status === 'Baixo Estoque',
+                          'bg-red-100 text-red-800': combustivel.status === 'Indisponível'
+                        }">
+                    {{ combustivel.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Consumption Section -->
+    <div class="mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">Controle de Consumo</h3>
+        <button
+          (click)="toggleConsumoForm()"
+          class="flex items-center px-4 py-2 bg-primary-600 text-white rounded-2xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          {{ showConsumoForm ? 'Cancelar' : 'Registrar Consumo' }}
+        </button>
+      </div>
+
+      <!-- Consumption Form -->
+      <div *ngIf="showConsumoForm" class="bg-white rounded-2xl shadow-md p-6 mb-6 animate-fadeIn">
+        <h4 class="text-lg font-semibold text-gray-800 mb-4">Registro de Consumo de Combustível</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="codigoCombustivel" class="block text-sm font-medium text-gray-700 mb-1">Combustível</label>
+            <select
+              id="codigoCombustivel"
+              [(ngModel)]="novoConsumo.codigoCombustivel"
+              (change)="atualizarTipoCombustivel()"
+              class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            >
+              <option value="">Selecione o combustível</option>
+              @for (combustivel of combustiveis; track combustivel.id) {
+                <option [value]="combustivel.codigo">{{ combustivel.codigo }} - {{ combustivel.tipo }}</option>
+              }
+            </select>
+          </div>
+          <div>
+            <label for="maquina" class="block text-sm font-medium text-gray-700 mb-1">Máquina/Equipamento</label>
+            <input
+              type="text"
+              id="maquina"
+              [(ngModel)]="novoConsumo.maquina"
+              class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Nome da máquina ou equipamento"
+            >
+          </div>
+          <div>
+            <label for="operacao" class="block text-sm font-medium text-gray-700 mb-1">Operação</label>
+            <input
+              type="text"
+              id="operacao"
+              [(ngModel)]="novoConsumo.operacao"
+              class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Tipo de operação realizada"
+            >
+          </div>
+          <div>
+            <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade (L)</label>
+            <input
+              type="number"
+              id="quantidade"
+              [(ngModel)]="novoConsumo.quantidade"
+              class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              placeholder="0"
+              min="1"
+            >
+          </div>
+          <div>
+            <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data</label>
+            <input
+              type="date"
+              id="data"
+              [(ngModel)]="novoConsumo.data"
+              class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            >
+          </div>
+          <div>
+            <label for="operador" class="block text-sm font-medium text-gray-700 mb-1">Operador</label>
+            <input
+              type="text"
+              id="operador"
+              [(ngModel)]="novoConsumo.operador"
+              class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Nome do operador"
+            >
+          </div>
+        </div>
+        <div class="mt-6 flex justify-end">
+          <button
+            (click)="adicionarConsumo()"
+            [disabled]="!validarFormularioConsumo()"
+            class="px-6 py-2 bg-primary-600 text-white rounded-2xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Registrar
+          </button>
+        </div>
+      </div>
+
+      <!-- Consumption Table -->
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Combustível</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Máquina</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operação</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantidade</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operador</th>
+                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              @for (consumo of consumoCombustivel; track consumo.id) {
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ consumo.tipoCombustivel }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ consumo.maquina }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ consumo.operacao }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ consumo.quantidade }} {{ consumo.unidade }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ consumo.data }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ consumo.operador }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <div class="flex justify-end space-x-2">
+                      <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                      <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Óleos e Lubrificantes -->
+  <div *ngIf="activeTab === 'oleos'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Óleos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ oleos.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-secondary-100 text-secondary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Disponíveis</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ oleos.length - getLowStockCount(oleos) }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-yellow-100 text-yellow-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Baixo Estoque</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ getLowStockCount(oleos) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Oils and Lubricants Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-800">Estoque de Óleos e Lubrificantes</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantidade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Local</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estoque Mínimo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (oleo of oleos; track oleo.id) {
+              <tr class="hover:bg-gray-50" [ngClass]="{'bg-yellow-50': isLowStock(oleo)}">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ oleo.codigo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ oleo.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ oleo.tipo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ oleo.quantidade }} {{ oleo.unidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ oleo.localArmazenamento }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ oleo.dataValidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ oleo.estoqueMinimo }} {{ oleo.unidade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="{
+                          'bg-green-100 text-green-800': oleo.status === 'Disponível',
+                          'bg-yellow-100 text-yellow-800': oleo.status === 'Baixo Estoque',
+                          'bg-red-100 text-red-800': oleo.status === 'Indisponível'
+                        }">
+                    {{ oleo.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
