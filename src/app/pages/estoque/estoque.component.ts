@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     NgClass,
     NgIf,
-    NgFor,
     FormsModule
   ],
   styleUrls: ['./estoque.component.scss']

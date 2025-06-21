@@ -1,0 +1,137 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+// Animation for form transitions
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+// Custom scrollbar for tables
+.overflow-x-auto {
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+  }
+}
+
+// Status badges
+span.rounded-full {
+  min-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Table row hover effect
+tr.hover\:bg-gray-50:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+// Toggle switch animation
+.relative.inline-flex {
+  span {
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+// Card hover effects
+.border.border-gray-200.rounded-lg {
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+}
+
+// Form elements
+input, select, textarea {
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:focus {
+    border-color: var(--color-primary-500);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2,
+  .grid.grid-cols-1.md\:grid-cols-3 {
+    gap: 1rem;
+  }
+
+  .px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  pre {
+    font-size: 0.7rem;
+  }
+}
+
+// Integration type badges
+span.bg-gray-100 {
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+// Pre formatting for JSON
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border-radius: 0.25rem;
+  border: 1px solid #edf2f7;
+}
+
+// Button transitions
+button {
+  transition: all 0.2s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Tab transitions
+button.border-b-2 {
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+// Stats cards
+.rounded-lg.shadow {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,577 @@
+<div class="container mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">{{ title }}</h1>
+    <p class="mt-2 text-gray-600">{{ subtitle }}</p>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="mb-6 border-b border-gray-200">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+      <li class="mr-2">
+        <button
+          (click)="changeTab('documentos')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'documentos' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          Documentos
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeTab('licencas')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'licencas' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+          Licenças
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeTab('auditorias')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'auditorias' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+          </svg>
+          Auditorias
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="changeTab('relatorios')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'relatorios' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          Relatórios
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Tab Content: Documentos -->
+  <div *ngIf="activeTab === 'documentos'" class="animate-fadeIn">
+    <!-- Actions Bar -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+      <!-- Search -->
+      <div class="relative w-full md:w-96">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input type="text" class="w-full py-2 pl-10 pr-4 text-sm text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Buscar documento...">
+      </div>
+
+      <!-- Filters and Add Button -->
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="relative">
+          <select class="appearance-none bg-white border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm">
+            <option value="">Todos os status</option>
+            <option value="vigente">Vigente</option>
+            <option value="vencido">Vencido</option>
+            <option value="permanente">Permanente</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+
+        <button
+          (click)="toggleDocumentoForm()"
+          class="flex items-center px-4 py-2 bg-primary-600 text-white rounded-2xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          Novo Documento
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Documentos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ documentos.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Vigentes</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarDocumentosPorStatus('vigente') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-blue-100 text-blue-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Permanentes</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarDocumentosPorStatus('permanente') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-red-100 text-red-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Vencidos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarDocumentosPorStatus('vencido') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Document Form -->
+    <div *ngIf="showDocumentoForm" class="bg-white rounded-2xl shadow-md p-6 mb-6 animate-fadeIn">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Cadastro de Novo Documento</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome do Documento</label>
+          <input
+            type="text"
+            id="nome"
+            [(ngModel)]="novoDocumento.nome"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            placeholder="Nome do documento"
+          >
+        </div>
+        <div>
+          <label for="tipo" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Documento</label>
+          <select
+            id="tipo"
+            [(ngModel)]="novoDocumento.tipo"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          >
+            <option value="">Selecione o tipo</option>
+            <option value="Contrato">Contrato</option>
+            <option value="Escritura">Escritura</option>
+            <option value="Certificado">Certificado</option>
+            <option value="Imposto">Imposto</option>
+            <option value="Procuração">Procuração</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div>
+          <label for="dataEmissao" class="block text-sm font-medium text-gray-700 mb-1">Data de Emissão</label>
+          <input
+            type="date"
+            id="dataEmissao"
+            [(ngModel)]="novoDocumento.dataEmissao"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          >
+        </div>
+        <div>
+          <label for="dataValidade" class="block text-sm font-medium text-gray-700 mb-1">Data de Validade</label>
+          <input
+            type="date"
+            id="dataValidade"
+            [(ngModel)]="novoDocumento.dataValidade"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          >
+          <p class="text-xs text-gray-500 mt-1">Deixe em branco para documentos permanentes</p>
+        </div>
+        <div>
+          <label for="responsavel" class="block text-sm font-medium text-gray-700 mb-1">Responsável</label>
+          <input
+            type="text"
+            id="responsavel"
+            [(ngModel)]="novoDocumento.responsavel"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            placeholder="Departamento responsável"
+          >
+        </div>
+        <div>
+          <label for="observacoes" class="block text-sm font-medium text-gray-700 mb-1">Observações</label>
+          <textarea
+            id="observacoes"
+            [(ngModel)]="novoDocumento.observacoes"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            placeholder="Observações adicionais"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button
+          (click)="adicionarDocumento()"
+          [disabled]="!validarFormularioDocumento()"
+          class="px-6 py-2 bg-primary-600 text-white rounded-2xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Cadastrar Documento
+        </button>
+      </div>
+    </div>
+
+    <!-- Documents Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Emissão</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Validade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Responsável</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (documento of documentos; track documento.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ documento.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ documento.tipo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ documento.dataEmissao }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{ documento.dataValidade || 'Permanente' }}
+                  <span *ngIf="isDocumentoAVencer(documento.dataValidade)" class="ml-2 px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
+                    A vencer
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(documento.status)">
+                    {{ documento.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ documento.responsavel }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Visualizar</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Licenças -->
+  <div *ngIf="activeTab === 'licencas'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Licenças</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ licencas.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Vigentes</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarLicencasPorStatus('vigente') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-blue-100 text-blue-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Ativos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarLicencasPorStatus('ativo') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Licenses Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Órgão Emissor</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Número</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Emissão</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Validade</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Responsável</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (licenca of licencas; track licenca.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ licenca.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ licenca.orgaoEmissor }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ licenca.numero }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ licenca.dataEmissao }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{ licenca.dataValidade || 'Permanente' }}
+                  <span *ngIf="isDocumentoAVencer(licenca.dataValidade)" class="ml-2 px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
+                    A vencer
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(licenca.status)">
+                    {{ licenca.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ licenca.responsavel }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Visualizar</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Auditorias -->
+  <div *ngIf="activeTab === 'auditorias'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Auditorias</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ auditorias.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Concluídas</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarAuditoriasPorStatus('concluída') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-yellow-100 text-yellow-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Planejadas</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarAuditoriasPorStatus('planejada') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audits Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Área</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Início</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Fim</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Responsável</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Resultado</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (auditoria of auditorias; track auditoria.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ auditoria.tipo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ auditoria.area }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ auditoria.dataInicio }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ auditoria.dataFim }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(auditoria.status)">
+                    {{ auditoria.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ auditoria.responsavel }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span *ngIf="auditoria.resultado !== 'Pendente'" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(auditoria.resultado)">
+                    {{ auditoria.resultado }}
+                  </span>
+                  <span *ngIf="auditoria.resultado === 'Pendente'" class="text-sm text-gray-500">
+                    {{ auditoria.resultado }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Relatórios -->
+  <div *ngIf="activeTab === 'relatorios'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Relatórios</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ relatorios.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Enviados</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarRelatoriosPorStatus('enviado') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-yellow-100 text-yellow-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Em Elaboração</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarRelatoriosPorStatus('em elaboração') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reports Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Emissão</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Período</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destinatário</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (relatorio of relatorios; track relatorio.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ relatorio.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ relatorio.tipo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ relatorio.dataEmissao }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ relatorio.periodo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ relatorio.destinatario }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(relatorio.status)">
+                    {{ relatorio.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Visualizar</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

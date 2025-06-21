@@ -1,0 +1,111 @@
+/* Additional styles for usuarios component */
+:host {
+  display: block;
+  padding: 1rem;
+}
+
+/* Animation for tab transitions */
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar for tables */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Ensure consistent height for status badges */
+.rounded-full {
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hover effect for table rows */
+tr.hover\:bg-gray-50:hover {
+  transition: background-color 0.2s ease;
+}
+
+/* Form transitions */
+.bg-white.animate-fadeIn {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.bg-white.animate-fadeIn:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Status colors */
+.bg-green-100 {
+  background-color: rgba(209, 250, 229, 0.8);
+}
+
+.bg-yellow-100 {
+  background-color: rgba(254, 243, 199, 0.8);
+}
+
+.bg-red-100 {
+  background-color: rgba(254, 226, 226, 0.8);
+}
+
+/* User avatar styling */
+.rounded-full.bg-primary-100 {
+  transition: transform 0.2s ease;
+}
+
+.rounded-full.bg-primary-100:hover {
+  transform: scale(1.05);
+}
+
+/* Button transitions */
+button {
+  transition: all 0.2s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-cols-1 {
+    gap: 1rem;
+  }
+
+  .px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex.justify-end.space-x-2 {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  .flex.justify-end.space-x-2 button {
+    margin-left: 0 !important;
+  }
+}

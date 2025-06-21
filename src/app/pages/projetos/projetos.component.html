@@ -1,0 +1,634 @@
+<div class="container mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">{{ title }}</h1>
+    <p class="mt-2 text-gray-600">{{ subtitle }}</p>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="mb-6 border-b border-gray-200">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+      <li class="mr-2">
+        <button
+          (click)="changeTab('projetos')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'projetos' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+          </svg>
+          Projetos
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeTab('obras')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'obras' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+          Obras
+        </button>
+      </li>
+      <li class="mr-2">
+        <button
+          (click)="changeTab('infraestrutura')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'infraestrutura' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+          </svg>
+          Infraestrutura
+        </button>
+      </li>
+      <li>
+        <button
+          (click)="changeTab('orcamentos')"
+          class="inline-flex items-center px-4 py-2 rounded-t-lg"
+          [ngClass]="activeTab === 'orcamentos' ? 'text-primary-600 border-b-2 border-primary-600 active' : 'text-gray-500 hover:text-gray-600 hover:border-gray-300 border-b-2 border-transparent'"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          Orçamentos
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Tab Content: Projetos -->
+  <div *ngIf="activeTab === 'projetos'" class="animate-fadeIn">
+    <!-- Actions Bar -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+      <!-- Search -->
+      <div class="relative w-full md:w-96">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input type="text" class="w-full py-2 pl-10 pr-4 text-sm text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Buscar projeto...">
+      </div>
+
+      <!-- Filters and Add Button -->
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="relative">
+          <select class="appearance-none bg-white border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-sm">
+            <option value="">Todos os status</option>
+            <option value="em andamento">Em andamento</option>
+            <option value="planejamento">Planejamento</option>
+            <option value="concluído">Concluído</option>
+            <option value="atrasado">Atrasado</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+
+        <button
+          (click)="toggleProjetoForm()"
+          class="flex items-center px-4 py-2 bg-primary-600 text-white rounded-2xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          Novo Projeto
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Projetos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ projetos.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-blue-100 text-blue-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Em Andamento</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarProjetosPorStatus('em andamento') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Progresso Médio</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ calcularProgressoMedio() }}%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-tertiary-100 text-tertiary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Orçamento Total</h3>
+            <p class="text-3xl font-bold text-gray-800">R$ {{ formatCurrency(calcularOrcamentoTotal()) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Project Form -->
+    <div *ngIf="showProjetoForm" class="bg-white rounded-2xl shadow-md p-6 mb-6 animate-fadeIn">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Cadastro de Novo Projeto</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome do Projeto</label>
+          <input
+            type="text"
+            id="nome"
+            [(ngModel)]="novoProjeto.nome"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            placeholder="Nome do projeto"
+          >
+        </div>
+        <div>
+          <label for="tipo" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Projeto</label>
+          <select
+            id="tipo"
+            [(ngModel)]="novoProjeto.tipo"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          >
+            <option value="">Selecione o tipo</option>
+            <option value="Infraestrutura">Infraestrutura</option>
+            <option value="Irrigação">Irrigação</option>
+            <option value="Pecuária">Pecuária</option>
+            <option value="Agricultura">Agricultura</option>
+            <option value="Energia">Energia</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div>
+          <label for="dataInicio" class="block text-sm font-medium text-gray-700 mb-1">Data de Início</label>
+          <input
+            type="date"
+            id="dataInicio"
+            [(ngModel)]="novoProjeto.dataInicio"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          >
+        </div>
+        <div>
+          <label for="previsaoTermino" class="block text-sm font-medium text-gray-700 mb-1">Previsão de Término</label>
+          <input
+            type="date"
+            id="previsaoTermino"
+            [(ngModel)]="novoProjeto.previsaoTermino"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          >
+        </div>
+        <div>
+          <label for="responsavel" class="block text-sm font-medium text-gray-700 mb-1">Responsável</label>
+          <input
+            type="text"
+            id="responsavel"
+            [(ngModel)]="novoProjeto.responsavel"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            placeholder="Nome do responsável"
+          >
+        </div>
+        <div>
+          <label for="orcamento" class="block text-sm font-medium text-gray-700 mb-1">Orçamento (R$)</label>
+          <input
+            type="number"
+            id="orcamento"
+            [(ngModel)]="novoProjeto.orcamento"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            placeholder="0.00"
+            step="0.01"
+            min="0"
+          >
+        </div>
+        <div class="md:col-span-2">
+          <label for="descricao" class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+          <textarea
+            id="descricao"
+            [(ngModel)]="novoProjeto.descricao"
+            class="w-full py-2 px-4 text-gray-700 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            placeholder="Descrição do projeto"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button
+          (click)="adicionarProjeto()"
+          [disabled]="!validarFormularioProjeto()"
+          class="px-6 py-2 bg-primary-600 text-white rounded-2xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Cadastrar Projeto
+        </button>
+      </div>
+    </div>
+
+    <!-- Projects Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Início</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Término</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Responsável</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Orçamento</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progresso</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (projeto of projetos; track projeto.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ projeto.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ projeto.tipo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(projeto.status)">
+                    {{ projeto.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ projeto.dataInicio }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ projeto.previsaoTermino }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ projeto.responsavel }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">R$ {{ formatCurrency(projeto.orcamento) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-primary-600 h-2.5 rounded-full" [style.width.%]="projeto.progresso"></div>
+                  </div>
+                  <span class="text-xs text-gray-500 mt-1">{{ projeto.progresso }}%</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Obras -->
+  <div *ngIf="activeTab === 'obras'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Obras</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ obras.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-blue-100 text-blue-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Em Andamento</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarObrasPorStatus('em andamento') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-tertiary-100 text-tertiary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Valor Total</h3>
+            <p class="text-3xl font-bold text-gray-800">R$ {{ formatCurrency(calcularValorTotalObras()) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Construction Works Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Local</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Início</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Término</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Responsável</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progresso</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (obra of obras; track obra.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ obra.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obra.local }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(obra.status)">
+                    {{ obra.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obra.dataInicio }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obra.previsaoTermino }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ obra.responsavel }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">R$ {{ formatCurrency(obra.valorContrato) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-primary-600 h-2.5 rounded-full" [style.width.%]="obra.progresso"></div>
+                  </div>
+                  <span class="text-xs text-gray-500 mt-1">{{ obra.progresso }}%</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Infraestrutura -->
+  <div *ngIf="activeTab === 'infraestrutura'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Itens</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ infraestrutura.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Bom Estado</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarInfraestruturaPorStatus('bom') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-red-100 text-red-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Necessita Manutenção</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarInfraestruturaManutencao() }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infrastructure Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Extensão</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Última Manutenção</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Próxima Manutenção</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Observações</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (item of infraestrutura; track item.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ item.tipo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ item.nome }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ item.extensao }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(item.status)">
+                    {{ item.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ item.ultimaManutencao }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ item.proximaManutencao }}</td>
+                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ item.observacoes }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Orçamentos -->
+  <div *ngIf="activeTab === 'orcamentos'" class="animate-fadeIn">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-primary-100 text-primary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Total de Orçamentos</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ orcamentos.length }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-green-100 text-green-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Aprovados</h3>
+            <p class="text-3xl font-bold text-gray-800">{{ contarOrcamentosPorStatus('aprovado') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-md p-6">
+        <div class="flex items-center">
+          <div class="p-3 rounded-full bg-tertiary-100 text-tertiary-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-lg font-semibold text-gray-700">Valor Total</h3>
+            <p class="text-3xl font-bold text-gray-800">R$ {{ formatCurrency(calcularValorTotalOrcamentos()) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Budgets Table -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Projeto</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fornecedor</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validade</th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (orcamento of orcamentos; track orcamento.id) {
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ orcamento.projeto }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ orcamento.fornecedor }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">R$ {{ formatCurrency(orcamento.valor) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="getStatusClass(orcamento.status)">
+                    {{ orcamento.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ orcamento.data }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ orcamento.validade }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <div class="flex justify-end space-x-2">
+                    <button class="text-primary-600 hover:text-primary-900">Detalhes</button>
+                    <button class="text-gray-600 hover:text-gray-900">Editar</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Budget Details (Example for first budget) -->
+    <div class="mt-6 bg-white rounded-2xl shadow-md p-6">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Detalhes do Orçamento - {{ orcamentos[0].projeto }}</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div>
+          <p class="text-sm font-medium text-gray-500">Fornecedor</p>
+          <p class="text-base font-medium text-gray-800">{{ orcamentos[0].fornecedor }}</p>
+        </div>
+        <div>
+          <p class="text-sm font-medium text-gray-500">Valor Total</p>
+          <p class="text-base font-medium text-gray-800">R$ {{ formatCurrency(orcamentos[0].valor) }}</p>
+        </div>
+        <div>
+          <p class="text-sm font-medium text-gray-500">Status</p>
+          <p class="text-base font-medium">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                  [ngClass]="getStatusClass(orcamentos[0].status)">
+              {{ orcamentos[0].status }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h4 class="text-md font-semibold text-gray-700 mb-3">Itens do Orçamento</h4>
+        <div class="bg-gray-50 rounded-lg p-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-1 font-medium text-gray-700">Descrição</div>
+            <div class="col-span-1 font-medium text-gray-700 text-right">Valor</div>
+          </div>
+
+          @for (item of orcamentos[0].itens; track $index) {
+            <div class="grid grid-cols-2 gap-4 mt-2 pb-2 border-b border-gray-200">
+              <div class="col-span-1 text-gray-600">{{ item.descricao }}</div>
+              <div class="col-span-1 text-gray-600 text-right">R$ {{ formatCurrency(item.valor) }}</div>
+            </div>
+          }
+
+          <div class="grid grid-cols-2 gap-4 mt-4 pt-2 border-t border-gray-300">
+            <div class="col-span-1 font-semibold text-gray-800">Total</div>
+            <div class="col-span-1 font-semibold text-gray-800 text-right">R$ {{ formatCurrency(orcamentos[0].valor) }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

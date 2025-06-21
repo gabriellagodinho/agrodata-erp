@@ -3,31 +3,31 @@
 <div class="settings-container">
   <div class="settings-sidebar">
     <div class="settings-nav">
-      <div class="nav-item active">
+      <div class="nav-item" [class.active]="activeModule === 'empresa'" (click)="changeModule('empresa')">
         <i>🏢</i>
         <span>Empresa</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" [class.active]="activeModule === 'usuarios'" (click)="changeModule('usuarios')">
         <i>👥</i>
         <span>Usuários</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" [class.active]="activeModule === 'notificacoes'" (click)="changeModule('notificacoes')">
         <i>🔔</i>
         <span>Notificações</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" [class.active]="activeModule === 'integracoes'" (click)="changeModule('integracoes')">
         <i>🌐</i>
         <span>Integrações</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" [class.active]="activeModule === 'aplicativo'" (click)="changeModule('aplicativo')">
         <i>📱</i>
         <span>Aplicativo</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" [class.active]="activeModule === 'backup'" (click)="changeModule('backup')">
         <i>💾</i>
         <span>Backup</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" [class.active]="activeModule === 'logs'" (click)="changeModule('logs')">
         <i>📋</i>
         <span>Logs</span>
       </div>
@@ -35,175 +35,223 @@
   </div>
 
   <div class="settings-content">
-    <div class="settings-section">
-      <div class="section-header">
-        <h3>Informações da Empresa</h3>
-        <button class="save-btn">Salvar Alterações</button>
+    <!-- Empresa Module -->
+    <div *ngIf="activeModule === 'empresa'">
+      <div class="settings-section">
+        <div class="section-header">
+          <h3>Informações da Empresa</h3>
+          <button class="save-btn">Salvar Alterações</button>
+        </div>
+
+        <div class="form-container">
+          <div class="form-group">
+            <label for="company-name">Nome da Empresa</label>
+            <input type="text" id="company-name" value="AgroData Fazendas Ltda.">
+          </div>
+
+          <div class="form-group">
+            <label for="company-document">CNPJ</label>
+            <input type="text" id="company-document" value="12.345.678/0001-90">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company-phone">Telefone</label>
+              <input type="text" id="company-phone" value="(11) 3456-7890">
+            </div>
+
+            <div class="form-group">
+              <label for="company-email">E-mail</label>
+              <input type="email" id="company-email" value="contato@agrodatafazendas.com.br">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="company-address">Endereço</label>
+            <input type="text" id="company-address" value="Rodovia BR-101, Km 123">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company-city">Cidade</label>
+              <input type="text" id="company-city" value="Campinas">
+            </div>
+
+            <div class="form-group">
+              <label for="company-state">Estado</label>
+              <select id="company-state">
+                <option value="SP" selected>São Paulo</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PR">Paraná</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="GO">Goiás</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="company-zip">CEP</label>
+              <input type="text" id="company-zip" value="13000-000">
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-container">
-        <div class="form-group">
-          <label for="company-name">Nome da Empresa</label>
-          <input type="text" id="company-name" value="AgroData Fazendas Ltda.">
+      <div class="settings-section">
+        <div class="section-header">
+          <h3>Configurações do Sistema</h3>
         </div>
 
-        <div class="form-group">
-          <label for="company-document">CNPJ</label>
-          <input type="text" id="company-document" value="12.345.678/0001-90">
-        </div>
-
-        <div class="form-row">
+        <div class="form-container">
           <div class="form-group">
-            <label for="company-phone">Telefone</label>
-            <input type="text" id="company-phone" value="(11) 3456-7890">
-          </div>
-
-          <div class="form-group">
-            <label for="company-email">E-mail</label>
-            <input type="email" id="company-email" value="contato@agrodatafazendas.com.br">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="company-address">Endereço</label>
-          <input type="text" id="company-address" value="Rodovia BR-101, Km 123">
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="company-city">Cidade</label>
-            <input type="text" id="company-city" value="Campinas">
-          </div>
-
-          <div class="form-group">
-            <label for="company-state">Estado</label>
-            <select id="company-state">
-              <option value="SP" selected>São Paulo</option>
-              <option value="MG">Minas Gerais</option>
-              <option value="PR">Paraná</option>
-              <option value="MT">Mato Grosso</option>
-              <option value="GO">Goiás</option>
+            <label for="system-language">Idioma do Sistema</label>
+            <select id="system-language">
+              <option value="pt-BR" selected>Português (Brasil)</option>
+              <option value="en-US">English (United States)</option>
+              <option value="es">Español</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="company-zip">CEP</label>
-            <input type="text" id="company-zip" value="13000-000">
+            <label for="date-format">Formato de Data</label>
+            <select id="date-format">
+              <option value="dd/mm/yyyy" selected>DD/MM/AAAA</option>
+              <option value="mm/dd/yyyy">MM/DD/AAAA</option>
+              <option value="yyyy-mm-dd">AAAA-MM-DD</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="currency">Moeda</label>
+            <select id="currency">
+              <option value="BRL" selected>Real (R$)</option>
+              <option value="USD">Dólar (US$)</option>
+              <option value="EUR">Euro (€)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="timezone">Fuso Horário</label>
+            <select id="timezone">
+              <option value="America/Sao_Paulo" selected>Brasília (GMT-3)</option>
+              <option value="America/Manaus">Manaus (GMT-4)</option>
+              <option value="America/Cuiaba">Cuiabá (GMT-4)</option>
+              <option value="America/Rio_Branco">Rio Branco (GMT-5)</option>
+            </select>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-container">
+              <input type="checkbox" checked>
+              <span class="checkmark"></span>
+              Ativar notificações por e-mail
+            </label>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-container">
+              <input type="checkbox" checked>
+              <span class="checkmark"></span>
+              Ativar notificações no sistema
+            </label>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-container">
+              <input type="checkbox">
+              <span class="checkmark"></span>
+              Ativar modo de alto contraste
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="section-header">
+          <h3>Unidades de Medida</h3>
+        </div>
+
+        <div class="form-container">
+          <div class="form-group">
+            <label for="area-unit">Unidade de Área</label>
+            <select id="area-unit">
+              <option value="hectare" selected>Hectare (ha)</option>
+              <option value="alqueire">Alqueire (alq)</option>
+              <option value="acre">Acre (ac)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="weight-unit">Unidade de Peso</label>
+            <select id="weight-unit">
+              <option value="ton" selected>Tonelada (t)</option>
+              <option value="kg">Quilograma (kg)</option>
+              <option value="arroba">Arroba (&#64;)</option>
+              <option value="saca">Saca (sc)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="volume-unit">Unidade de Volume</label>
+            <select id="volume-unit">
+              <option value="liter" selected>Litro (L)</option>
+              <option value="m3">Metro Cúbico (m³)</option>
+              <option value="gallon">Galão (gal)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="distance-unit">Unidade de Distância</label>
+            <select id="distance-unit">
+              <option value="km" selected>Quilômetro (km)</option>
+              <option value="m">Metro (m)</option>
+              <option value="mile">Milha (mi)</option>
+            </select>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="settings-section">
-      <div class="section-header">
-        <h3>Configurações do Sistema</h3>
-      </div>
+    <!-- Usuários Module -->
+    <div *ngIf="activeModule === 'usuarios'">
+      <app-config-usuarios></app-config-usuarios>
+    </div>
 
-      <div class="form-container">
-        <div class="form-group">
-          <label for="system-language">Idioma do Sistema</label>
-          <select id="system-language">
-            <option value="pt-BR" selected>Português (Brasil)</option>
-            <option value="en-US">English (United States)</option>
-            <option value="es">Español</option>
-          </select>
-        </div>
+    <!-- Notificações Module -->
+    <div *ngIf="activeModule === 'notificacoes'">
+      <app-config-notificacoes></app-config-notificacoes>
+    </div>
 
-        <div class="form-group">
-          <label for="date-format">Formato de Data</label>
-          <select id="date-format">
-            <option value="dd/mm/yyyy" selected>DD/MM/AAAA</option>
-            <option value="mm/dd/yyyy">MM/DD/AAAA</option>
-            <option value="yyyy-mm-dd">AAAA-MM-DD</option>
-          </select>
-        </div>
+    <!-- Integrações Module -->
+    <div *ngIf="activeModule === 'integracoes'">
+      <app-integracoes></app-integracoes>
+    </div>
 
-        <div class="form-group">
-          <label for="currency">Moeda</label>
-          <select id="currency">
-            <option value="BRL" selected>Real (R$)</option>
-            <option value="USD">Dólar (US$)</option>
-            <option value="EUR">Euro (€)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="timezone">Fuso Horário</label>
-          <select id="timezone">
-            <option value="America/Sao_Paulo" selected>Brasília (GMT-3)</option>
-            <option value="America/Manaus">Manaus (GMT-4)</option>
-            <option value="America/Cuiaba">Cuiabá (GMT-4)</option>
-            <option value="America/Rio_Branco">Rio Branco (GMT-5)</option>
-          </select>
-        </div>
-
-        <div class="form-group checkbox-group">
-          <label class="checkbox-container">
-            <input type="checkbox" checked>
-            <span class="checkmark"></span>
-            Ativar notificações por e-mail
-          </label>
-        </div>
-
-        <div class="form-group checkbox-group">
-          <label class="checkbox-container">
-            <input type="checkbox" checked>
-            <span class="checkmark"></span>
-            Ativar notificações no sistema
-          </label>
-        </div>
-
-        <div class="form-group checkbox-group">
-          <label class="checkbox-container">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-            Ativar modo de alto contraste
-          </label>
+    <!-- Aplicativo Module -->
+    <div *ngIf="activeModule === 'aplicativo'">
+      <div class="settings-section">
+        <div class="section-header">
+          <h3>Configurações do Aplicativo Mobile</h3>
+          <p class="text-muted">Este módulo estará disponível em breve.</p>
         </div>
       </div>
     </div>
 
-    <div class="settings-section">
-      <div class="section-header">
-        <h3>Unidades de Medida</h3>
+    <!-- Backup Module -->
+    <div *ngIf="activeModule === 'backup'">
+      <div class="settings-section">
+        <div class="section-header">
+          <h3>Configurações de Backup</h3>
+          <p class="text-muted">Este módulo estará disponível em breve.</p>
+        </div>
       </div>
+    </div>
 
-      <div class="form-container">
-        <div class="form-group">
-          <label for="area-unit">Unidade de Área</label>
-          <select id="area-unit">
-            <option value="hectare" selected>Hectare (ha)</option>
-            <option value="alqueire">Alqueire (alq)</option>
-            <option value="acre">Acre (ac)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="weight-unit">Unidade de Peso</label>
-          <select id="weight-unit">
-            <option value="ton" selected>Tonelada (t)</option>
-            <option value="kg">Quilograma (kg)</option>
-            <option value="arroba">Arroba (&#64;)</option>
-            <option value="saca">Saca (sc)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="volume-unit">Unidade de Volume</label>
-          <select id="volume-unit">
-            <option value="liter" selected>Litro (L)</option>
-            <option value="m3">Metro Cúbico (m³)</option>
-            <option value="gallon">Galão (gal)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="distance-unit">Unidade de Distância</label>
-          <select id="distance-unit">
-            <option value="km" selected>Quilômetro (km)</option>
-            <option value="m">Metro (m)</option>
-            <option value="mile">Milha (mi)</option>
-          </select>
+    <!-- Logs Module -->
+    <div *ngIf="activeModule === 'logs'">
+      <div class="settings-section">
+        <div class="section-header">
+          <h3>Logs do Sistema</h3>
+          <p class="text-muted">Este módulo estará disponível em breve.</p>
         </div>
       </div>
     </div>
