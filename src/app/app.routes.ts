@@ -55,6 +55,7 @@ export const routes: Routes = [
 
   // Sistema
   { path: 'configuracoes', component: ConfiguracoesComponent },
+  { path: 'perfil', redirectTo: 'configuracoes', pathMatch: 'full' },
   { path: 'seguranca', component: SegurancaComponent },
 
   // Fallback route

@@ -2,3 +2,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global styles to prevent horizontal scrolling */
+@layer base {
+  html, body {
+    @apply overflow-x-hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Ensure tables with horizontal scrolling don't cause page to scroll horizontally */
+@layer components {
+  .overflow-x-auto {
+    max-width: 100%;
+  }
+}

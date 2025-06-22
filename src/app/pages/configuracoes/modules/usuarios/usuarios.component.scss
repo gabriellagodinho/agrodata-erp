@@ -21,6 +21,10 @@
 }
 
 /* Custom scrollbar for tables */
+.overflow-x-auto {
+  max-width: 100%;
+}
+
 .overflow-x-auto::-webkit-scrollbar {
   height: 8px;
 }

@@ -3,6 +3,10 @@
 <div class="settings-container">
   <div class="settings-sidebar">
     <div class="settings-nav">
+      <div class="nav-item" [class.active]="activeModule === 'perfil'" (click)="changeModule('perfil')">
+        <i>👤</i>
+        <span>Perfil</span>
+      </div>
       <div class="nav-item" [class.active]="activeModule === 'empresa'" (click)="changeModule('empresa')">
         <i>🏢</i>
         <span>Empresa</span>
@@ -35,6 +39,11 @@
   </div>
 
   <div class="settings-content">
+    <!-- Perfil Module -->
+    <div *ngIf="activeModule === 'perfil'">
+      <app-perfil></app-perfil>
+    </div>
+
     <!-- Empresa Module -->
     <div *ngIf="activeModule === 'empresa'">
       <div class="settings-section">
